@@ -3,9 +3,8 @@
 *.swp
 *.DS_Store
 *.mo
+main.css
 __pycache__/
 db.sqlite3
 static/vendor
-
-# Front-end dependencies
-bower_components/
+node_modules/
