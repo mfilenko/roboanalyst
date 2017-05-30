@@ -1,10 +1,85 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block js %}
-{% endblock %}
+{% load static %}
 
-{% block css %}
-{% endblock %}
+{% block css %} 
 
-{% block body %}
-{% endblock %}
+
+<link href="{% static 'vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css' %}" rel="stylesheet" type="text/css"/>
+
+<style>
+ #container{
+                left: 10px;
+                position: absolute;
+                top: 100px;
+            }
+
+            #ex1Slider .slider-selection {
+                background: #BABABA;
+            }
+            
+            .slider.slider-horizontal .slider-track{
+                
+                height: 2px;
+            }
+            
+            .slider-handle{
+                top: -4px;
+                background-color: rgba(255,255,255,255);
+                background-image: none;
+                border-width: 2px;
+                border-color: #f08200;
+                
+            }
+            .tooltip-inner{
+                background-color: #999999;
+            }
+            .tooltip.top .tooltip-arrow{
+                
+                border-top-color: rgba(0,0,0,0);
+            }
+
+</style>
+
+
+{% endblock %} 
+
+
+
+{% block js %} 
+
+{% endblock %} 
+
+
+{% block body %} 
+
+
+    <script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/modernizr.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/highlight.min.js' %}"></script>
+
+
+ <div id="container">
+
+            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+
+        </div>
+
+        <script type="text/javascript">
+// Without JQuery
+            var slider = new Slider('#ex1', {
+                formatter: function (value) {
+                    return value+ "% p.a.";
+                },
+                handle: 'square',
+                tooltip: 'always'
+            });
+
+
+        </script>
+
+
+
+{% endblock %} 
