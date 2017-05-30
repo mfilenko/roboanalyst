@@ -1,10 +1,21 @@
-{% load static %}
+{% load static compress %}
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>GENO</title>
     <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/dist/css/bootstrap.min.css' %}">
+
+    {% compress css %}
+    <style type="text/less">
+    @color: #4D926F;
+
+    body {
+      background: @color;
+    }
+    </style>
+    {% endcompress %}
+
     {% block css %}{% endblock %}
 </head>
 <body>
