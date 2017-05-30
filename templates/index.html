@@ -4,7 +4,7 @@
 <script type="text/javascript">
 // Make monochrome colors
 Highcharts.setOptions({
- colors: ['#FF4000', '#FF8000', '#E6E6E6' , '#819FF7', '#A4A4A4', '#D8D8D8']
+ colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
 });
 
 Highcharts.chart('container', {
@@ -20,6 +20,16 @@ Highcharts.chart('container', {
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
     },
+    legend: {
+    enabled: true,
+    align: 'left',
+    verticalAlign: 'bottom',
+    width: 20,
+    itemStyle: {
+      color: '#000',
+      fontFamily: 'Frutiger-Cn'
+    }
+  },
     plotOptions: {
         pie: {
             allowPointSelect: true,
