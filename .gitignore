@@ -3,6 +3,7 @@
 *.swp
 *.DS_Store
 *.mo
+main.css
 __pycache__/
 db.sqlite3
 static/vendor
