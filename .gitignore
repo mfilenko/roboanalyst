@@ -1,0 +1,9 @@
+*.pyc
+*.pyo
+*.swp
+*.DS_Store
+*.mo
+__pycache__/
+db.sqlite3
+static/vendor
+
