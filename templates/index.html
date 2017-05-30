@@ -2,6 +2,11 @@
 
 {% block js %}
 <script type="text/javascript">
+// Make monochrome colors
+Highcharts.setOptions({
+ colors: ['#FF4000', '#FF8000', '#E6E6E6' , '#819FF7', '#A4A4A4', '#D8D8D8']
+});
+
 Highcharts.chart('container', {
     chart: {
         plotBackgroundColor: null,
