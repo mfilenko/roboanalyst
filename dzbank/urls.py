@@ -21,5 +21,7 @@ from views import *
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^import/$', import_depot, name="import-depot"),
+    url(r'^d/chart1/$', chart1, name="d_chart1"),
+    url(r'^simulation/$', simulation, name="simulation"),
     url(r'^admin/', admin.site.urls),
 ]

@@ -1,0 +1,25 @@
+{
+  "name": "robo-analyst",
+  "version": "1.0.0",
+  "description": "Let Robo Analyst optimize your wealth!",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0",
+    "gulp-watch": "^4.3.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfilenko/roboanalyst.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mfilenko/roboanalyst/issues"
+  },
+  "homepage": "https://github.com/mfilenko/roboanalyst#readme"
+}
