@@ -10,7 +10,9 @@
 <body>
     {% block body %}{% endblock %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}">
+    <script type="text/javascript" src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/highcharts/highstock.js' %}"></script>
     {% block js %}{% endblock %}
 </body>
 </html>
