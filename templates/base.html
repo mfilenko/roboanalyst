@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css?family=Istok+Web">
   <style type="text/css">
     #header{
+      padding-top: 15px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -134,7 +135,7 @@
 
     <div id="submenu">
       <div id="firstLine">
-        <div class="bigOrangeText">Depotcheck</div>
+        <div class="bigOrangeText">{% block section %}Depotcheck{% endblock%}</div>
         <div>
           <a class="btn btn-tab" href="{% url 'allocation' %}">ALLOKATION</a>
           <a class="btn btn-tab" href="{% url 'stresstest' %}">STRESS TESTS</a>
@@ -170,7 +171,7 @@
     var csrftoken = Cookies.get('csrftoken');
     var duser = 'josueyy';
     var templates = {
-      credentials: '<input class="credentials" type="<% if (masked) { %>password<% } else { %>text<% } %>" placeholder="<%= label %>" autocomplete="false">',
+      credentials: '<div class="form-group"><input class="credentials form-control" type="<% if (masked) { %>password<% } else { %>text<% } %>" placeholder="<%= label %>" autocomplete="false"></div>',
       link: '<a data-id="<%= id %>" href="#"><div class="bank-block"><i class="fa ra-<%= id %>"></i></div></a>',
       checkbox_asset: '<tr><td><input type="checkbox" name="client_account" value="<%= id %>" <% if (selected) { %>checked="checked"<% } %>></td><td><%= name %></td><td><%= account_number %></td><td><%= total_value %></td></tr>',
       asset: '<tr><td><%= name %></td><td><%= account_number %></td><td><%= total_value %></td></tr>'

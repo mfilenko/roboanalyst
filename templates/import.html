@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block section %}DEPOTS IMPORTIEREN{% endblock%}
+
+{% block infotext %}
+<div class="panel-body">Lorem impsum</div>
+{% endblock%}
+
 {% block js %}
 <script type="text/javascript" src="{% static 'js/import.js' %}"></script>
 <script type="text/javascript">
@@ -120,15 +126,17 @@ $('.bank-wrapper').on('click', 'a', function() {
   var id = $(this).data('id');
   var bank = data[id];
   selectedBank = bank;
-  var inputs = '<span>' + bank.name + ' </span>';
+  var inputs = '<div class="form-inline"><label><span class="text-primary">' + bank.name + ' </span></label>';
+  $('.bank-block').removeClass('active');
+  $(this).find('.bank-block').addClass('active');
   for (var i = 0; i < bank.credentials.length; ++i) {
     inputs += _.template(templates.credentials)(bank.credentials[i]);
   }
-  inputs += '</form>'
+  inputs += '</div>'
   $('.selected-wrapper').html(inputs);
 })
 
-$('#getAccounts').click(function (){
+$('.login-figo').click(function (){
   var acredentials = [];
   $('.credentials').each(function(){
     acredentials.push($(this).val());
@@ -147,8 +155,6 @@ $('#getAccounts').click(function (){
 
 {% block body %}
 <div class="container import">
-  <h3>DEPOTS IMPORTIEREN</h3>
-  <p>Lorem impsum</p>
   <div class="bank-lists">
     <div class="bank-wrapper">
 
@@ -161,9 +167,11 @@ $('#getAccounts').click(function (){
     </div>
   </div>
   <!-- Button trigger modal -->
-  <a id="getAccounts" type="button" class="btn btn-primary btn-lg">
-    Weiter
-  </a>
+  <div>
+    <div class="pull-right">
+      <a type="button" class="login-figo btn btn-next btn-lg">Weiter</a><a type="button" class="login-figo btn btn-next-orange btn-lg">&gt;</a>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

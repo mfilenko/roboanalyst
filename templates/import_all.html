@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block section %}DEPOTS IMPORTIEREN{% endblock%}
+
+{% block infotext %}
+<div class="panel-body">Möchten Sie witere Depots importieren? Starten alternativ direkt mit der Analyse.</div>
+{% endblock%}
+
 {% block js %}
 <script type="text/javascript" src="{% static 'js/import.js' %}"></script>
 <script type="text/javascript">
@@ -35,13 +41,10 @@
 
 {% block body %}
 <div class="container">
-  <h3>DEPOTS IMPORTIEREN</h3>
-  <p>Möchten Sie witere Depots importieren? Starten alternativ direkt mit der Analyse.</p>
   <table class="table table-hover assets-table">
     <tbody></tbody>
   </table>
-
-  <div><span><i class="fa fa-plus"></i></span><a href="#" data-toggle="modal" data-target="#accountsModal">Weiteres depot importieren</a></div>
+  <div><a href="#" class="btn" data-toggle="modal" data-target="#accountsModal"><i class="fa fa-plus"></i> Weiteres depot importieren</a></div>
 </div>
 
 <!-- Modal -->
@@ -50,7 +53,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Wählen Sie Ihr Wertpapierdepot aus</h4>
+        <h3 class="modal-title" id="myModalLabel">Wählen Sie Ihr Wertpapierdepot aus</h3>
       </div>
       <div class="modal-body">
         <table class="table table-hover">
@@ -64,7 +67,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button id="importAccounts" type="button" class="btn btn-primary">OK</button>
+        <button id="importAccounts" type="button" class="btn btn-lg btn-next">OK</button>
       </div>
     </div>
   </div>

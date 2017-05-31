@@ -102,11 +102,13 @@ def d_simulation(request):
         'data': [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
     }], safe=False)
 
+
 @require_POST
 def d_figo_connect(request):
     form = GetAccountForm(request.POST)
     r = {}
     if form.is_valid():
+        print 'calling'
         r = form.call()
     else:
         r.update(success=False)
