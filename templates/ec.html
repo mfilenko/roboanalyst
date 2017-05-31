@@ -1,38 +1,30 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% load static %}
 
-{% block css %} 
+{% block css %}
 
 
 <style type="text/css">
-    
-    
     #contentContainer{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-       
+
     }
-    
-    
-    
     .floatRight{
         float: right;
     }
-    
-    
- .dottedline{
+    .dottedline{
 
-    stroke: #cccccc;
-    stroke-dasharray: 5 5;
-  
+        stroke: #cccccc;
+        stroke-dasharray: 5 5;
 }
 
 
 svg text{
   stroke: #aaaaaa;
-  
+
 }
 
 .tickline{
@@ -40,28 +32,28 @@ svg text{
 }
 
 svg circle{
-  
+
   stroke: blue;
   stroke-width: 3px;
   fill: none;
-  
+
 }
 
 svg .securities_circle{
   stroke: gray;
-  
+
 }
-    
+
     .fa{
         margin-right: 3px;
     }
-    
-    
-    
+
+
+
     /*Everything needed for dropdown*/
-    
+
     .dropbtn {
-    
+
     cursor: pointer;
 }
 
@@ -92,46 +84,48 @@ svg .securities_circle{
     display: block;
 }
 
-  
+
 
 </style>
 
 
-{% endblock %} 
+{% endblock %}
 
-{% block infotext%}
-<div class="smallOrangeText">EFFIZIENSKURVE</div>
-<div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+{% block infotext %}
+<div class="panel-body">
+    <h3>EFFIZIENSKURVE</h3>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+</div>
 
 {%endblock%}
 
 
-{% block js %} 
+{% block js %}
 
-{% endblock %} 
+{% endblock %}
 
 
-{% block body %} 
+{% block body %}
 
-    <div id="contentContainer">
-        <div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
             <svg width="350" height="350"></svg>
             <div style="margin-left: 20px">
                 <div style="vert">
                     <span style="color: blue;vertical-align: middle">&#9608;</span> Ihr Portfolio
                 </div>
-                
+
                 <div class="dropdown" style="">
                     <span class="dropbtn" style="color: orange;vertical-align: middle">&#9608;</span> Ausgegliches Portfolio <span style="color:red">&#9660;</span>
                      <div class="dropdown-content">
-                        
+
                      </div>
                 </div>
-                
+
             </div>
-            
         </div>
-        <div style="max-width: 290px;">
+        <div class="col-sm-4">
             <div style="background-color: lightgrey">
             PORTFOLIO WERT:
             </div>
@@ -148,16 +142,21 @@ svg .securities_circle{
                <div>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
             </div>
-        
-        
-        </div>
-        <div style="max-width: 290px;background-color: #dfdedd; border-radius: 4px; padding: 5px; position:relative;">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-            <button class="orange" style="position: absolute; bottom: 10px;left: 50%">Jetzt optimieren</button>
-        </div>
 
+
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>
+                    <button class="btn btn-primary">Jetzt optimieren</button>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
+</div>
+
 
 
 
@@ -171,8 +170,8 @@ svg .securities_circle{
     /*Draw chart*/
     var data = {"portfolio":{"amount":11754.65,"risk_level":"string","risk":0.11,"ret":0.017},"securities_list":[{"account_id":"31","isin":"DE0123456790","quantity":100,"purchase_price":42.75,"purchase_price_currency":"EUR","ret":0.01,"risk":0.08},{"account_id":"31","isin":"AU9876543210","quantity":10000,"purchase_price":99.75,"purchase_price_currency":"EUR","ret":0.021,"risk":0.15}],"ec":[{"risk":0.020166580797640964,"ret":0.01009999999999993},{"risk":0.020961172262632093,"ret":0.011299999999999992},{"risk":0.021533325364712787,"ret":0.011399999999999992},{"risk":0.02243020846151897,"ret":0.011499999999999991},{"risk":0.022074835578255826,"ret":0.01159999999999999},{"risk":0.021946148477987273,"ret":0.01169999999999999},{"risk":0.022296936768587093,"ret":0.01179999999999999},{"risk":0.02253349068807935,"ret":0.011899999999999989},{"risk":0.02263415997530468,"ret":0.011999999999999988},{"risk":0.022954326347927337,"ret":0.012099999999999988},{"risk":0.02348186764695435,"ret":0.012199999999999987},{"risk":0.02350667097539471,"ret":0.012299999999999986},{"risk":0.023858020240569645,"ret":0.012399999999999986},{"risk":0.02443396623676469,"ret":0.012499999999999985},{"risk":0.02460443630304797,"ret":0.012599999999999984},{"risk":0.024981302696200844,"ret":0.012699999999999984},{"risk":0.02558782709204975,"ret":0.012799999999999983},{"risk":0.025878321677237175,"ret":0.012899999999999983},{"risk":0.026296048408201805,"ret":0.012999999999999982},{"risk":0.02679465832181779,"ret":0.013099999999999981},{"risk":0.027291230992359878,"ret":0.01319999999999998},{"risk":0.02776019793611549,"ret":0.01329999999999998},{"risk":0.028283782705151746,"ret":0.01339999999999998},{"risk":0.028852926510384094,"ret":0.013499999999999979},{"risk":0.029331797042494542,"ret":0.013599999999999978},{"risk":0.029899096511501112,"ret":0.013699999999999978},{"risk":0.030503083410098764,"ret":0.013799999999999977},{"risk":0.031026381821272247,"ret":0.013899999999999977},{"risk":0.03159562742747546,"ret":0.013999999999999976},{"risk":0.032243909209117405,"ret":0.014000009999999974},{"risk":0.03279360118613368,"ret":0.014199999999999975},{"risk":0.03339412666555485,"ret":0.014299999999999974},{"risk":0.03403820432190259,"ret":0.014399999999999974},{"risk":0.03464118041774803,"ret":0.014499999999999973},{"risk":0.035253209586035374,"ret":0.014599999999999972},{"risk":0.03591775812492855,"ret":0.014699999999999972},{"risk":0.03656063518219813,"ret":0.014799999999999971},{"risk":0.037175016612487455,"ret":0.01489999999999997},{"risk":0.037869878094201115,"ret":0.01499999999999997},{"risk":0.038517271420858264,"ret":0.01509999999999997},{"risk":0.03916288111270672,"ret":0.015199999999999969},{"risk":0.03993595324302291,"ret":0.015299999999999968},{"risk":0.04053438877518504,"ret":0.015399999999999968},{"risk":0.041207244227742086,"ret":0.015499999999999967},{"risk":0.04196535021519593,"ret":0.015599999999999966},{"risk":0.04260339742244895,"ret":0.015699999999999967},{"risk":0.04340896677891964,"ret":0.015799999999999967},{"risk":0.04403633595139289,"ret":0.015899999999999966},{"risk":0.04471709509102658,"ret":0.015999999999999966},{"risk":0.04552609322634675,"ret":0.016099999999999965},{"risk":0.046195670721207824,"ret":0.016199999999999964},{"risk":0.04698310716536975,"ret":0.016299999999999964},{"risk":0.04766151789344431,"ret":0.016399999999999963},{"risk":0.04862817222179319,"ret":0.016499999999999963},{"risk":0.04985485385000162,"ret":0.016599999999999962},{"risk":0.04996585385000162,"ret":0.01669999999999996},{"risk":0.05028316005984945,"ret":0.01679999999999996},{"risk":0.051020075968660664,"ret":0.01689999999999996},{"risk":0.05175147570045336,"ret":0.01699999999999996},{"risk":0.05245876455892019,"ret":0.01709999999999996},{"risk":0.053184768444040326,"ret":0.01719999999999996},{"risk":0.053924359035606606,"ret":0.017299999999999958},{"risk":0.054640094883071276,"ret":0.017399999999999957},{"risk":0.05537822098922979,"ret":0.017499999999999957},{"risk":0.056113599976813464,"ret":0.017599999999999956},{"risk":0.05684017160853992,"ret":0.017699999999999955},{"risk":0.05757779546179916,"ret":0.017799999999999955},{"risk":0.058317772148992295,"ret":0.017899999999999954},{"risk":0.05905418773679492,"ret":0.017999999999999954},{"risk":0.05979369039476664,"ret":0.018099999999999953},{"risk":0.06053214339175195,"ret":0.018199999999999952},{"risk":0.061267196810393144,"ret":0.01829999999999995},{"risk":0.06200452803349276,"ret":0.01839999999999995},{"risk":0.06274533916005286,"ret":0.01849999999999995},{"risk":0.06348154690176612,"ret":0.01859999999999995},{"risk":0.06422280125085181,"ret":0.01869999999999995},{"risk":0.06496160537570117,"ret":0.01879999999999995},{"risk":0.06569457201692722,"ret":0.018899999999999948},{"risk":0.06643635621089773,"ret":0.018999999999999947},{"risk":0.0671707493764692,"ret":0.019099999999999947},{"risk":0.0679120145923809,"ret":0.019199999999999946},{"risk":0.06865125437749953,"ret":0.019299999999999946},{"risk":0.06939528584439836,"ret":0.019399999999999945},{"risk":0.07015233757387514,"ret":0.019499999999999944},{"risk":0.07087232407658206,"ret":0.019599999999999944},{"risk":0.07163326175552462,"ret":0.019699999999999943},{"risk":0.07239018341233837,"ret":0.019799999999999943},{"risk":0.07314288853679181,"ret":0.019899999999999942},{"risk":0.07392478850116943,"ret":0.01999999999999994},{"risk":0.07463573975336425,"ret":0.02009999999999994},{"risk":0.07540887211509244,"ret":0.02019999999999994},{"risk":0.07619287950917612,"ret":0.02029999999999994},{"risk":0.07695144719523031,"ret":0.02039999999999994},{"risk":0.07775239572543022,"ret":0.02049999999999994},{"risk":0.07845873618410988,"ret":0.020599999999999938},{"risk":0.07923768136409695,"ret":0.020699999999999937},{"risk":0.08005025563911503,"ret":0.020799999999999937},{"risk":0.0807993277327736,"ret":0.020899999999999936},{"risk":0.08161978080989708,"ret":0.020999999999999935},{"risk":0.08233301418777034,"ret":0.021099999999999935},{"risk":0.08310755680757066,"ret":0.021199999999999934},{"risk":0.08393683416129866,"ret":0.021299999999999934},{"risk":0.08469480388581106,"ret":0.021399999999999933},{"risk":0.08553029493803631,"ret":0.021499999999999932},{"risk":0.0862516635980978,"ret":0.021599999999999932},{"risk":0.08701613553450545,"ret":0.02169999999999993},{"risk":0.08786171757734478,"ret":0.02179999999999993},{"risk":0.08871561643016522,"ret":0.02189999999999993},{"risk":0.08957223412828758,"ret":0.02199999999999993},{"risk":0.09021102455766124,"ret":0.02209999999999993},{"risk":0.09065781679830369,"ret":0.022199999999999928},{"risk":0.09104199652074767,"ret":0.022299999999999928},{"risk":0.09200917129559154,"ret":0.022399999999999927},{"risk":0.09276275721862487,"ret":0.022499999999999926},{"risk":0.09353357784779784,"ret":0.022599999999999926},{"risk":0.09431043500409937,"ret":0.022699999999999925},{"risk":0.09505821617030255,"ret":0.022799999999999924},{"risk":0.0958284422281193,"ret":0.022899999999999924},{"risk":0.09660900871089287,"ret":0.022799999999999924},{"risk":0.0969650218263551,"ret":0.02299999999999992},{"risk":0.09736360814065444,"ret":0.023099999999999923},{"risk":0.09812658990604138,"ret":0.023199999999999922},{"risk":0.09891227365228472,"ret":0.02329999999999992},{"risk":0.1004346617268976,"ret":0.02349999999999992},{"risk":0.10121253458849296,"ret":0.02359999999999992},{"risk":0.10197606230883922,"ret":0.02369999999999992},{"risk":0.10273908172318989,"ret":0.02379999999999992},{"risk":0.10352232976260152,"ret":0.023899999999999918},{"risk":0.10428980053185066,"ret":0.023999999999999917},{"risk":0.10505199471563936,"ret":0.024099999999999917},{"risk":0.10584103497233123,"ret":0.024199999999999916},{"risk":0.1066052168242442,"ret":0.024299999999999915},{"risk":0.10736854281034859,"ret":0.024399999999999915},{"risk":0.10816807722909366,"ret":0.024499999999999914},{"risk":0.10892905184661507,"ret":0.024599999999999914},{"risk":0.10970321746976282,"ret":0.024699999999999913},{"risk":0.11050655139639441,"ret":0.024799999999999912},{"risk":0.11124936417539423,"ret":0.024899999999999912},{"risk":0.11204047292068615,"ret":0.02499999999999991},{"risk":0.11283451674279417,"ret":0.02509999999999991},{"risk":0.11359990963456751,"ret":0.02519999999999991},{"risk":0.1144394855609889,"ret":0.02529999999999991},{"risk":0.11516297313026143,"ret":0.02539999999999991},{"risk":0.11594599829102702,"ret":0.025499999999999908},{"risk":0.11676954407834143,"ret":0.025599999999999908},{"risk":0.1175276789582171,"ret":0.025699999999999907},{"risk":0.11837524776508498,"ret":0.025799999999999906},{"risk":0.11910613769883209,"ret":0.025899999999999906},{"risk":0.11988141546409381,"ret":0.025999999999999905},{"risk":0.12073233612627375,"ret":0.026099999999999905},{"risk":0.12148351114529729,"ret":0.026199999999999904},{"risk":0.12232131882451683,"ret":0.026299999999999903},{"risk":0.12307601716591653,"ret":0.026399999999999903},{"risk":0.12384387483523963,"ret":0.026499999999999902},{"risk":0.12469651050484742,"ret":0.0265999999999999},{"risk":0.12546475180557048,"ret":0.0266999999999999},{"risk":0.12629324249956103,"ret":0.0267999999999999},{"risk":0.1270701077038845,"ret":0.0268999999999999},{"risk":0.12783086169348284,"ret":0.0269999999999999},{"risk":0.12867385591415748,"ret":0.0270999999999999},{"risk":0.12946905698906294,"ret":0.027199999999999898},{"risk":0.13028865441663273,"ret":0.027299999999999897},{"risk":0.13108619625608423,"ret":0.027399999999999897},{"risk":0.13184015084544676,"ret":0.027499999999999896},{"risk":0.13267394230258323,"ret":0.027599999999999895},{"risk":0.13349435117712308,"ret":0.027699999999999895},{"risk":0.13430545835855143,"ret":0.027799999999999894},{"risk":0.13512232137015875,"ret":0.027899999999999894},{"risk":0.13586976799554046,"ret":0.027999999999999893},{"risk":0.13669477328325694,"ret":0.028099999999999892},{"risk":0.13753879155105614,"ret":0.028199999999999892},{"risk":0.13834179096232785,"ret":0.02829999999999989},{"risk":0.13917673987628923,"ret":0.02839999999999989},{"risk":0.13991795682446845,"ret":0.02849999999999989},{"risk":0.14073457082882246,"ret":0.02859999999999989},{"risk":0.1420018696447816,"ret":0.02869999999999989},{"risk":0.14450956755126715,"ret":0.028799999999999888},{"risk":0.14819470915014116,"ret":0.028899999999999888},{"risk":0.15297222329996915,"ret":0.028999999999999887},{"risk":0.1587435131196746,"ret":0.029099999999999886},{"risk":0.1654045869642586,"ret":0.029199999999999886}]};
 
-    
-    
+
+
     var svg= d3.select("svg"),
         margin={top:20, right: 30,  bottom: 30, left: 50},
         width = +svg.attr("width")-margin.left - margin.right,
@@ -181,63 +180,63 @@ svg .securities_circle{
         xmax = 1;
         ymax = 1;
         padding = 5;
-    
+
         var retMax = d3.max(data.ec,function(d){return d.ret});
         var riskMax = d3.max(data.ec,function(d){return d.risk});
-    
+
         var x = d3.scaleLinear().rangeRound([0,width]);
         var y = d3.scaleLinear().rangeRound([height,0]);
-    
+
         x.domain([0, xmax]);
         y.domain([0, ymax]);
-    
+
         g.append("line").style("stroke","green").attr("class","tickline").attr("x1",x(0)).attr("y1",y(0)-padding).attr("x2",x(0)).attr("y2",y(0.33*ymax)+padding);
         g.append("line").style("stroke","yellow").attr("class","tickline").attr("x1",x(0)).attr("y1",y(0.33 * ymax) - padding).attr("x2",x(0)).attr("y2",y(0.66*ymax)+padding);
         g.append("line").style("stroke","red").attr("class","tickline").attr("x1",x(0)).attr("y1",y(0.66* ymax) - padding).attr("x2",x(0)).attr("y2",y(ymax)+padding);
-    
-        
+
+
         //y ticks
         var distanceFromLine =15;
         g.append("text").text("Niedrig").attr("dx",x(0)-distanceFromLine).attr("dy",y(0.33/2*ymax)).attr("text-anchor","middle").attr("transform","rotate(-90 " + (x(0)-distanceFromLine) + " "+ y(0.33/2*ymax)+")");
         g.append("text").text("Mittel").attr("dx",x(0)-distanceFromLine).attr("dy",y(0.33*ymax + 0.33/2*ymax)).attr("text-anchor","middle").attr("transform","rotate(-90 " + (x(0)-distanceFromLine) + " "+ y(0.33 + 0.33/2*ymax)+")");
         g.append("text").text("Hoch").attr("dx",x(0)-distanceFromLine).attr("dy",y(0.66*ymax + 0.33/2*ymax)).attr("text-anchor","middle").attr("transform","rotate(-90 " + (x(0)-distanceFromLine) + " "+ y(0.66 + 0.33/2*ymax)+")");
-    
+
         g.append("text").text("RENDITE").attr("dx",x(0)).attr("text-anchor","middle");
-    
-    
+
+
         //x ticks
         var xDinstanceFromLine = 16;
         g.append("line").style("stroke","green").attr("class","tickline").attr("x1",x(0)+padding ).attr("y1",y(0)).attr("x2",x(0.33*xmax)-padding).attr("y2",y(0));
         g.append("line").style("stroke","yellow").attr("class","tickline").attr("x1",x(0.33*xmax)+padding ).attr("y1",y(0)).attr("x2",x(0.66*xmax)-padding).attr("y2",y(0));
         g.append("line").style("stroke","red").attr("class","tickline").attr("x1",x(0.66*xmax)+padding ).attr("y1",y(0)).attr("x2",x(xmax)-padding).attr("y2",y(0));
-    
+
         g.append("text").text("Niedrig").attr("dx",x(0.33/2*xmax)).attr("dy",y(0)+xDinstanceFromLine).attr("text-anchor","middle");
         g.append("text").text("Mittel").attr("dx",x(0.33*xmax + 0.33/2*xmax)).attr("dy",y(0)+xDinstanceFromLine).attr("text-anchor","middle");
         g.append("text").text("Hoch").attr("dx",x(0.66*xmax + 0.33/2*xmax)).attr("dy",y(0)+xDinstanceFromLine).attr("text-anchor","middle");
-    
+
         g.append("text").text("RISIKO").attr("dy",y(0)+20).attr("dx",x(xmax)).attr("text-anchor","middle");
-    
-    
+
+
         var numberOfLines = 6;
         var lineStrokeColor = "black";
-    
+
         for(var i=0;i<numberOfLines;i++){
           g.append("line").attr("class","dottedline").attr("x1",x(0)).attr("y1",y(ymax * (i+1)/numberOfLines)).attr("x2",x(xmax)).attr("y2",y(ymax * (i+1)/numberOfLines));
           g.append("line").attr("class","dottedline").attr("x1",x(xmax * (i+1)/numberOfLines)).attr("y1",y(0)).attr("x2",x(xmax * (i+1)/numberOfLines)).attr("y2",y(1))
         }
-    
-        
+
+
         var dotsToLowerValue=40;
         var referenceLine = d3.line().x(function(data){
-          
+
           return x(data.risk/riskMax);
-          
+
         }).y(function(data){
-          
+
           return y(data.ret/retMax)+ dotsToLowerValue;
         });
-    
-    
+
+
         //draw ref line
         g.append("path")
           .datum(data.ec)
@@ -246,17 +245,17 @@ svg .securities_circle{
           .attr("stroke-linejoin", "round")
           .attr("stroke-linecap", "round")
           .attr("stroke-width", 1.5)
-          .attr("d", referenceLine);    
-             
-    
+          .attr("d", referenceLine);
+
+
         //draw portfolio
         g.append("circle")
           .attr("cx", x(data.portfolio.risk/riskMax))
           .attr("cy",y(data.portfolio.ret/retMax)+dotsToLowerValue)
           .attr("r",10);
-    
+
         console.log(data);
-        
+
         //add circle for security list
         for(security of data.securities_list){
           g.append("circle")
@@ -264,15 +263,15 @@ svg .securities_circle{
           .attr("cy",y(security.ret/retMax)+dotsToLowerValue)
           .attr("class","securities_circle")
           .attr("r",5);
-          
+
         }
-    
+
 </script>
 
 
 
 <script>
-    
+
     //Init popup
 
     var possiblePortfolios = [
@@ -280,11 +279,11 @@ svg .securities_circle{
         {name:"Konservatives Portfolio", risk: 0.05},
         {name:"Wachstumsbezogenes Portfolio", risk: 0.2}
     ];
-    
+
     var currentlySelectedPortfolio = possiblePortfolios[0];
-    
+
     (function initDropDown(){
-        
+
         var container = document.getElementsByClassName("dropdown-content")[0];
         for (portfolio of possiblePortfolios){
             var a = document.createElement("a");
@@ -293,31 +292,31 @@ svg .securities_circle{
             a.addEventListener("click",createHandler(portfolio));
             container.append(a);
         }
-        
-        
+
+
         function createHandler(portfolio){
             var myPort = portfolio;
             function handler(e){
                 console.log(myPort);
                 console.log(e);
             }
-            
+
             return handler;
-            
+
         }
-        
+
         function switchPortfolio(){
-            
-            
-            
+
+
+
         }
-        
+
     })();
-    
-    
+
+
 
 </script>
 
 
 
-{% endblock %} 
+{% endblock %}
