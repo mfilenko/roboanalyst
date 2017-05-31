@@ -78,7 +78,7 @@ var einflussfaktor = {
         0.02: [0.00320,    0.00290,    0,00200,    0,00150],
         0.03: [0.00480,    0.00435,    0.00300,    0.00225],
         0.04: [0.00640,    0.00580,    0.00400,    0.00300],
-        0.05: [0.00800,    0,00725,    0,00500,    0,00375],
+        0.05: [0.00800,    0.00725,    0.00500,    0.00375],
         0.06: [0.00960,    0.00870,    0.00600,    0.00450],
         0.07: [0.01120,    0.01015,    0.00700,    0.00525],
         0.08: [0.01280,    0.01160,    0.00800,    0,00600],
@@ -115,89 +115,97 @@ var einflussfaktor = {
     }
 }
 
-// Get current Einflussfaktor
-var currentEinflussfaktor = document.getElementById("einflussfaktor").value;
-var currentSlider = document.getElementById("ex1").value;
+function drawDiagram() {
+    var currentSlider = document.getElementById("ex1").value;
+    // Get current Einflussfaktor
+    var currentEinflussfaktor = document.getElementById("einflussfaktor").value;
 
-Highcharts.setOptions({
- colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
-});
+    Highcharts.setOptions({
+     colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
+    });
 
-Highcharts.chart('newBardiagramm', {
-  title: {
-    text: '',
-    style: {
-      display: 'none'
-    }
-  },
-  chart: {
-    type: 'bar'
-  },
-  yAxis: {
-    lineColor: '#0E3C8A',
-    gridLineWidth: 0,
-    lineWidth: 2,
-    title: {
-      text: '',
-    },
-    labels: {
-      enabled: false
-    },
-  },
-  xAxis: {
-    lineColor: '#0E3C8A',
-    lineWidth: 2,
-    labels: {
-      enabled: false
-    },
-    title: {
-      text: ''
-    },
+    Highcharts.chart('newBardiagramm', {
+      title: {
+        text: 'Wertentwicklung',
+        style: {
+          display: 'none'
+        }
+      },
+      chart: {
+        type: 'bar'
+      },
+      yAxis: {
+        lineColor: '#0E3C8A',
+        gridLineWidth: 0,
+        lineWidth: 2,
+        title: {
+          text: '',
+        },
+        labels: {
+          enabled: false
+        },
+      },
+      xAxis: {
+        lineColor: '#0E3C8A',
+        lineWidth: 2,
+        labels: {
+          enabled: false
+        },
+        title: {
+          text: ''
+        },
 
-  },
-  tooltip: {
-    valueSuffix: ' millions'
-  },
-  plotOptions: {
-    bar: {
-      dataLabels: {
-        enabled: true
-      }
-    }
-  },
-  legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'top',
-    x: 20,
-    y: 30,
-    floating: true,
-    borderWidth: 0,
-    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-    shadow: false,
-    enabled: false
+      },
+      tooltip: {
+        valueSuffix: '%'
+      },
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            enabled: true
+          }
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: 20,
+        y: 30,
+        floating: true,
+        borderWidth: 0,
+        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+        shadow: false,
+        enabled: false
 
-  },
-  credits: {
-    enabled: false
-  },
-  credits: {
-    enabled: false
-  },
-  series: [{
-    name: 'Ihr Portfolio',
-    data: [107]
-  }, {
-    name: 'Konservativ',
-    data: [133]
-  }, {
-    name: 'Ausgewogen',
-    data: [133]
-  }, {
-    name: 'Wachstumsorientiert',
-    data: [60]
-  }]
-});
+      },
+      credits: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+          name: '',
+          colorByPoint: true,
+          data: [{
+              name: 'Ihr Portfolio',
+              y: Math.round(einflussfaktor[currentEinflussfaktor][currentSlider][0] * 10000) / 100
+          }, {
+              name: 'Konservativ',
+              y: Math.round(einflussfaktor[currentEinflussfaktor][currentSlider][1] * 10000) / 100
+          }, {
+              name: 'Ausgewogen',
+              y: Math.round(einflussfaktor[currentEinflussfaktor][currentSlider][2] * 10000) / 100
+          }, {
+              name: 'Wachstumsorientiert',
+              y: Math.round(einflussfaktor[currentEinflussfaktor][currentSlider][3] * 10000) / 100
+          }]
+      }]
+    });
+}
+
+drawDiagram()
 </script>
 
 {% endblock %}
@@ -221,13 +229,13 @@ Highcharts.chart('newBardiagramm', {
 
 <div id="slidercontainer">
 
-    <select id="einflussfaktor">
+    <select id="einflussfaktor" onchange="drawDiagram()">
       <option value="dax">DAX steigt um ...</option>
       <option value="msci-world">MSCI World ETF steigt um ...</option>
       <option value="msci-em">MSCI Emerging markets steigt um ...</option>
     </select>
 
-    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="0.03"/>
+    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="0.03" onchange="console.log('yo')"/>
 
 </div>
 
@@ -241,6 +249,9 @@ Highcharts.chart('newBardiagramm', {
         },
         handle: 'square',
         tooltip: 'always'
+    });
+    slider.on('change', function() {
+        drawDiagram();
     });
 </script>
 
