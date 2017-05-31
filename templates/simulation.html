@@ -1,8 +1,8 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% load static %}
 
-{% block css %} 
+{% block css %}
 
 
 <link href="{% static 'vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css' %}" rel="stylesheet" type="text/css"/>
@@ -18,41 +18,41 @@
             #ex1Slider .slider-selection {
                 background: #BABABA;
             }
-            
+
             .slider.slider-horizontal .slider-track{
-                
+
                 height: 2px;
             }
-            
+
             .slider-handle{
                 top: -4px;
                 background-color: rgba(255,255,255,255);
                 background-image: none;
                 border-width: 2px;
                 border-color: #f08200;
-                
+
             }
             .tooltip-inner{
                 background-color: #999999;
             }
             .tooltip.top .tooltip-arrow{
-                
+
                 border-top-color: rgba(0,0,0,0);
             }
 
 </style>
 
 
-{% endblock %} 
+{% endblock %}
 
 
 
-{% block js %} 
+{% block js %}
 
-{% endblock %} 
+{% endblock %}
 
 
-{% block body %} 
+{% block body %}
 
 
     <script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/modernizr.js' %}"></script>
@@ -64,7 +64,7 @@
 
  <div id="container">
 
-            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="3"/>
 
         </div>
 
@@ -72,7 +72,7 @@
 // Without JQuery
             var slider = new Slider('#ex1', {
                 formatter: function (value) {
-                    return value+ "% p.a.";
+                    return value * 100 + "% p.a.";
                 },
                 handle: 'square',
                 tooltip: 'always'
@@ -83,4 +83,4 @@
 
 
 
-{% endblock %} 
+{% endblock %}
