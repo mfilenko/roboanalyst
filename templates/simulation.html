@@ -9,7 +9,7 @@
 
 
 <style type="text/css">
- #container{
+ #slidercontainer{
                 left: 10px;
                 position: absolute;
                 top: 100px;
@@ -131,7 +131,14 @@ Highcharts.chart('newBardiagramm', {
 {% endblock %}
 
 
-{% block body %}
+{% block infotext%}
+<div class="smallOrangeText">SIMULATION</div>
+<div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+
+{%endblock%}
+
+
+{% block body %} 
 
 
     <script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/modernizr.js' %}"></script>
@@ -141,7 +148,7 @@ Highcharts.chart('newBardiagramm', {
 	<script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/highlight.min.js' %}"></script>
 
 
- <div id="container">
+ <div id="slidercontainer">
 
             <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
 

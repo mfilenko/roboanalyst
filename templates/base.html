@@ -7,13 +7,22 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/roboicons.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Istok+Web">
     <style type="text/css">
+        
+        
+        
+        body{
+            font-family: istok web;
+            color: darkgray;
+        }
         
         #header{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            
+            margin-bottom: 40px;
         }
         #logo{
             height: 50px;
@@ -29,7 +38,7 @@
             margin-top: 20px;
         }
     
-        
+    
         #mainMenu #userinfo{
             
             display: flex;
@@ -51,9 +60,46 @@
             vertical-align: middle;
         }
         
+        button{
+                background-color: #dfdedd;
+                border: none;
+                padding: 8px;
+                
+        }
+        
+        .orange{
+            background-color: #f0ad4e;
+        }
+        
         div{
             margin-bottom: 5px;
             
+        }
+        
+        #submenu #firstLine{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            
+        }
+        
+        #submenu #secondLine{
+            background-color: #dfdedd;
+            padding: 10px;
+            min-height: 180px;
+        }
+        
+        .bigOrangeText{
+           color: #f0ad4e;
+            font-size: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .smallOrangeText{
+            color: #f0ad4e;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
         }
         
        
@@ -71,7 +117,7 @@
             
             <div id="mainMenu">
                 
-                <div class="text-muted" id="userinfo">
+                <div class="" id="userinfo">
                     <div>Das Derivateportal der DZ BANK</div>
                     <div>
                         <span class="text-info" style="padding-right: 10px; border-right: 1px solid rgb(49,112,143)"> &#9734; Merkzettel</span>
@@ -80,16 +126,39 @@
                 
                 
                 <div id="buttonBar">
-                    <button class="btn btn-default active">Produkte</button>
-                    <button class="btn btn-default active">Märkte</button>
-                    <button class="btn btn-default active">News</button>
-                    <button class="btn btn-default active">Magazin</button>
-                    <button class="btn btn-primary">Mein Portfolio</button>
+                    <button class="">Produkte</button>
+                    <button class="">Märkte</button>
+                    <button class="">News</button>
+                    <button class="">Magazin</button>
+                    <button class="orange">Mein Portfolio</button>
                     <input  type="text" placeholder="Produkt / ISIN" width="20px"/><i style="margin-left:-20px" class="fa fa-search"></i>
                 </div>
                 
             </div>
 
+        </div>
+        
+        <div id="submenu">
+            <div id="firstLine">
+                <div class="bigOrangeText">Depotcheck</div>
+                <div>
+                    <button class="" onclick="window.location.href='/allocation'">ALLOKATION</button>
+                    <button class="" onclick="window.location.href='/stresstest'">STRESS TESTS</button>
+                    <button class="" onclick="window.location.href='/ec'">EFFIZIENSKURVE</button>
+                    <button class="" onclick="window.location.href='/performance'">PERFORMANCEVERGLEICH</button>
+                    <button class="" onclick="window.location.href='/simulation'">SIMULATION</button>
+                    
+                
+                </div>
+            </div>
+            <div id="secondLine">
+                {% block infotext%} {% endblock%}
+            </div>
+            
+            <script>
+            
+            </script>
+        
         </div>
         
         {% block body %}{% endblock %}
