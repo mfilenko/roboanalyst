@@ -20,7 +20,7 @@ from views import *
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='welcome.html')),
-    url(r'^import/$', import_depot, name="import-depot"),
+    url(r'^import/$', import_depot, name="import_depot"),
     url(r'^import/all/$',
         TemplateView.as_view(template_name='import_all.html'),
         name="import_all"),

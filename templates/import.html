@@ -135,8 +135,7 @@ $('#getAccounts').click(function (){
   });
   figoLogin(duser, acredentials.join(',')).done(function(r) {
     if (r.success) {
-      window.location = '{% url "import-depot" %}'
-
+      window.location = '{% url "import_all" %}'
     } else {
       console.error(r);
     }

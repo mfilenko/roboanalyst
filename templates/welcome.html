@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html class="full" lang="de">
 <!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
@@ -13,10 +14,11 @@
     <title>Roboanalyst — Welcome</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="static/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,700,700i" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="static/css/full.css" rel="stylesheet">
+    <link href="{% static 'css/full.css' %}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,7 +29,7 @@
 
 </head>
 
-<body>
+<body class="full">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -35,6 +37,24 @@
             </div>
         </div>
     </nav>
+
+    <div class="container-fluid">
+        <div class="col-sm-offset-7 col-sm-5">
+            <div class="main">
+                <h1>ROBO ANALYST</h1>
+                <ul>
+                    <li>Verknüpfen Sie alle Depots</li>
+                    <li>Analysieren Sie Ihr Portfolio</li>
+                    <li>Optimieren Sie Ihre Performance</li>
+                </ul>
+                <div class="btn-together">
+                    <a class="btn btn-lg btn-next" href="{% url 'import_depot' %}">
+                        Jetzt Starten
+                    </a><a class="btn btn-lg btn-next-orange" href="{% url 'import_depot' %}">&gt;</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -4,16 +4,4 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-body {
-    margin-top: 50px; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
-
 /* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
-
-.full {
-    background: url('../images/Home.jpg') no-repeat center 50px fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}

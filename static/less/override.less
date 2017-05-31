@@ -4,14 +4,55 @@
 
 body {
     color: @gray-dark;
+    &.full {
+        margin-top: 120px; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        background: url('../images/Home.jpg') no-repeat center 50px fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        .navbar-default {
+            background: white;
+        }
+        .main {
+            padding-top: 100px;
+        }
+        h1 {
+            color: @brand-primary;
+            font-size: 80px;
+            font-weight: bold;
+
+        }
+        ul li {
+            color: @brand-info;
+            font-size: 28px;
+        }
+
+    }
 }
 
 .table th {
     background: @gray-light;
 }
 
+.btn-together{
+
+}
+
 .btn {
     border-radius: 0;
+    &.btn-next {
+        background: @brand-info;
+        color: white;
+        .text {
+            display: inline-block;
+        }
+    }
+
+    &.btn-next-orange{
+        color: white;
+        background: @brand-primary;
+    }
     &.btn-tab {
         background: @gray-light;
         color: @gray-dark;
@@ -27,3 +68,4 @@ body {
         color: @brand-primary;
     }
 }
+
