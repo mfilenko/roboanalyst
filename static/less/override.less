@@ -2,6 +2,28 @@
     width: initial !important;
 }
 
+body {
+    color: @gray-dark;
+}
+
 .table th {
     background: @gray-light;
+}
+
+.btn {
+    &.btn-tab {
+        background: @gray-light;
+        border-radius: 0;
+        color: @gray-dark;
+        margin: 0 2px;
+        &:hover {
+            color: @brand-primary;
+            background: @gray-lighter;
+        }
+    }
+}
+.panel-body {
+    h3 {
+        color: @brand-primary;
+    }
 }
