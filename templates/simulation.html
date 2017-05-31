@@ -160,7 +160,7 @@ Highcharts.chart('newBardiagramm', {
 // Without JQuery
             var slider = new Slider('#ex1', {
                 formatter: function (value) {
-                    return value+ "% p.a.";
+                    return value * 100 + "% p.a.";
                 },
                 handle: 'square',
                 tooltip: 'always'
