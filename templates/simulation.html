@@ -9,57 +9,57 @@
 
 
 <style type="text/css">
-            #slidercontainer{
-                position: relative;
-                padding: 20px;
+#slidercontainer{
+    position: relative;
+    padding: 20px;
 
-                border-style: solid;
-                width: 260px;
-            }
+    border-style: solid;
+    width: 260px;
+}
 
-            #slidercontainer select{
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                padding: 5px;
-                border: none;
-                width: 100%;
-                margin-bottom: 40px;
-                background-color: #dfdedd;
+#slidercontainer select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 5px;
+    border: none;
+    width: 100%;
+    margin-bottom: 40px;
+    background-color: #dfdedd;
 
 
-            }
+}
 
-            #slidercontainer select:focus{
-               border-style: none;
-                outline:none;
+#slidercontainer select:focus{
+   border-style: none;
+    outline:none;
 
-            }
+}
 
-            #ex1Slider .slider-selection {
-                background: #BABABA;
-            }
+#ex1Slider .slider-selection {
+    background: #BABABA;
+}
 
-            .slider.slider-horizontal .slider-track{
+.slider.slider-horizontal .slider-track{
 
-                height: 2px;
-            }
+    height: 2px;
+}
 
-            .slider-handle{
-                top: -4px;
-                background-color: rgba(255,255,255,255);
-                background-image: none;
-                border-width: 2px;
-                border-color: #f08200;
+.slider-handle{
+    top: -4px;
+    background-color: rgba(255,255,255,255);
+    background-image: none;
+    border-width: 2px;
+    border-color: #f08200;
 
-            }
-            .tooltip-inner{
-                background-color: #999999;
-            }
-            .tooltip.top .tooltip-arrow{
+}
+.tooltip-inner{
+    background-color: #999999;
+}
+.tooltip.top .tooltip-arrow{
 
-                border-top-color: rgba(0,0,0,0);
-            }
+    border-top-color: rgba(0,0,0,0);
+}
 
 </style>
 
@@ -135,19 +135,20 @@ function drawDiagram() {
         type: 'bar'
       },
       yAxis: {
-        lineColor: '#0E3C8A',
+        // lineColor: '#0E3C8A',
         gridLineWidth: 0,
-        lineWidth: 2,
+        lineWidth: 1,
         title: {
           text: '',
         },
         labels: {
-          enabled: false
+          enabled: false,
+          opposite: true,
         },
       },
       xAxis: {
-        lineColor: '#0E3C8A',
-        lineWidth: 2,
+        // lineColor: '#0E3C8A',
+        lineWidth: 1,
         labels: {
           enabled: true
         },
@@ -232,16 +233,25 @@ drawDiagram()
 <script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/highlight.min.js' %}"></script>
 
 <div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div>
+                <select id="einflussfaktor" onchange="drawDiagram()">
+                  <option value="dax">DAX steigt um ...</option>
+                  <option value="msci-world">MSCI World ETF steigt um ...</option>
+                  <option value="msci-em">MSCI Emerging markets steigt um ...</option>
+                </select>
+                <br><br><br>
+            </div>
+            <div>
+                <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="0.03"/>
 
-    <select id="einflussfaktor" onchange="drawDiagram()">
-      <option value="dax">DAX steigt um ...</option>
-      <option value="msci-world">MSCI World ETF steigt um ...</option>
-      <option value="msci-em">MSCI Emerging markets steigt um ...</option>
-    </select>
-
-    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="0.03" onchange="console.log('yo')"/>
-
-    <div id="newBardiagramm" style="min-width: 200px; max-width: 400px; height:200px;"></div>
+            </div>
+            <div>
+                <div id="newBardiagramm" style="height:200px;"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
