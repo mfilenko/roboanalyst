@@ -3,6 +3,8 @@
 
 {% block section %}DEPOTS IMPORTIEREN{% endblock%}
 
+{% block second_menu %}{% endblock%}
+
 {% block infotext %}
 <div class="panel-body">Lorem impsum</div>
 {% endblock%}
@@ -137,11 +139,13 @@ $('.bank-wrapper').on('click', 'a', function() {
 })
 
 $('.login-figo').click(function (){
+  $("body").LoadingOverlay("show");
   var acredentials = [];
   $('.credentials').each(function(){
     acredentials.push($(this).val());
   });
   figoLogin(duser, acredentials.join(',')).done(function(r) {
+    $("body").LoadingOverlay("hide", true);
     if (r.success) {
       window.location = '{% url "import_all" %}'
     } else {
@@ -149,7 +153,6 @@ $('.login-figo').click(function (){
     }
   });
 })
-
 </script>
 {% endblock %}
 

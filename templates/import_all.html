@@ -7,6 +7,8 @@
 <div class="panel-body">Möchten Sie witere Depots importieren? Starten alternativ direkt mit der Analyse.</div>
 {% endblock%}
 
+{% block second_menu %}{% endblock%}
+
 {% block js %}
 <script type="text/javascript" src="{% static 'js/import.js' %}"></script>
 <script type="text/javascript">
@@ -45,6 +47,15 @@
     <tbody></tbody>
   </table>
   <div><a href="#" class="btn" data-toggle="modal" data-target="#accountsModal"><i class="fa fa-plus"></i> Weiteres depot importieren</a></div>
+
+  <div>
+    <div class="pull-right">
+      <div class="btn-together">
+        <a style="margin: 0 20px;" class="btn btn-lg btn-primary" href="{% url 'import_depot' %}">Züruck</a>
+        <a class="btn btn-lg btn-next" href="{% url 'allocation' %}">Analyse starten</a><a class="btn btn-lg btn-next-orange" href="{% url 'allocation' %}">&gt;</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Modal -->
