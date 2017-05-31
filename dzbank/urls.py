@@ -22,6 +22,9 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^import/$', import_depot, name="import-depot"),
     url(r'^ec/$', TemplateView.as_view(template_name='ec.html')),
+    url(r'^allocation/$', TemplateView.as_view(template_name='allocation.html')),
+    url(r'^stresstest/$', TemplateView.as_view(template_name='stresstest.html')),
+    url(r'^performance/$', TemplateView.as_view(template_name='performance.html')),
     url(r'^simulation/$', simulation, name="simulation"),
 
     url(r'^d/', include('dzbank.urls_data', namespace="d")),
