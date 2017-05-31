@@ -2,72 +2,7 @@
 
 {% block js %}
 <script type="text/javascript">
-Highcharts.setOptions({
-colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
-});
 
-Highcharts.chart('example-chart', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: '',
-        style: {
-        display: 'none'
-   }
- },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    legend: {
-     enabled: true,
-     align: 'left',
-     verticalAlign: 'bottom',
-     width: 20,
-     itemStyle: {
-       color: '#000',
-       fontFamily: 'Frutiger-Cn'
-     }
-   },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-         enabled: false
-       },
-       showInLegend: true
-     }
-   },
-    series: [{
-        name: 'Portfolio',
-        colorByPoint: true,
-        data: [{
-            name: 'Liquidität <br><b>Einlageprodukte</b>',
-            y: 36
-        }, {
-            name: 'Aktienfonds <br><b>Wachstumsmärkte</b>',
-            y: 32,
-            sliced: true,
-            selected: true
-        }, {
-            name: 'Aktienfonds <br><b>Industrieländer</b>',
-            y: 14
-        }, {
-            name: 'Anleihenfonds <br><b>Hochzins</b>',
-            y: 9
-        }, {
-            name: 'Anleihenfonds <br><b>Standart</b>',
-            y: 6
-        }, {
-            name: 'Andere',
-            y: 3
-        }]
-    }]
-});
 
 // Make monochrome colors
 Highcharts.setOptions({
@@ -97,6 +32,7 @@ Highcharts.chart('baseLineChart', {
 
       xAxis: {
       lineColor: '#0E3C8A',
+      gridLineWidth: 0,
        lineWidth:2,
        labels: {
                 enabled: false
@@ -143,7 +79,6 @@ Highcharts.chart('baseLineChart', {
 {% block body %}
 <div class="container">
   <h3>Hello World</h3>
-  <div id="example-chart">
 
   </div>
 
