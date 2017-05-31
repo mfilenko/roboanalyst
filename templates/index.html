@@ -2,6 +2,10 @@
 
 {% block js %}
 <script type="text/javascript">
+Highcharts.setOptions({
+colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
+});
+
 Highcharts.chart('example-chart', {
     chart: {
         plotBackgroundColor: null,
@@ -10,34 +14,34 @@ Highcharts.chart('example-chart', {
         type: 'pie'
     },
     title: {
-        text: 'Browser market shares January, 2015 to May, 2015'
-    },
+        text: '',
+        style: {
+        display: 'none'
+   }
+ },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
     },
     legend: {
-    enabled: true,
-    align: 'left',
-    verticalAlign: 'bottom',
-    width: 20,
-    itemStyle: {
-      color: '#000',
-      fontFamily: 'Frutiger-Cn'
-    }
-  },
+     enabled: true,
+     align: 'left',
+     verticalAlign: 'bottom',
+     width: 20,
+     itemStyle: {
+       color: '#000',
+       fontFamily: 'Frutiger-Cn'
+     }
+   },
     plotOptions: {
         pie: {
             allowPointSelect: true,
             cursor: 'pointer',
             dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                style: {
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                }
-            }
-        }
-    },
+         enabled: false
+       },
+       showInLegend: true
+     }
+   },
     series: [{
         name: 'Portfolio',
         colorByPoint: true,
