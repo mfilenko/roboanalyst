@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'vendor/underscore/underscore-min.js' %}"></script>
+<script type="text/javascript">
+var data = {
+  dzb_bank: {
+    name: 'VR-Bank',
+    code: 90090042,
+    credentials: [
+      {
+        label: 'Alias/VR-NetKey',
+        masked: false,
+      },
+      {
+        label: 'PIN oder Passwort',
+        masked: true,
+      },
+    ]
+  },
+  sparkasse_bank: {
+    name: 'Sparkasse',
+    code: 90090042,
+    credentials: [
+      {
+        label: 'Anmeldename od. Leg.-ID',
+        masked: false,
+      },
+      {
+        label: 'PIN oder Passwort',
+        masked: true,
+      },
+    ]
+  },
+  post_bank: {
+    name: 'Postbank',
+    code: 90090042,
+    credentials: [
+      {
+        label: 'Kontonummer',
+        masked: false,
+      },
+      {
+        label: 'PIN oder Passwort',
+        masked: true,
+      },
+    ]
+  },
+  deutsche_bank: {
+    name: 'Deutsche Bank',
+    code: 90090042,
+    credentials: [
+      {
+        label: 'Kontonummer',
+        masked: false,
+      },
+      {
+        label: 'PIN oder Passwort',
+        masked: true,
+      },
+    ]
+  },
+  commerze_bank: {
+    name: 'Commerzbank ZW 57 Berlin',
+    code: 90090042,
+    credentials: [
+      {
+        label: 'Benutzername/Teilnehmernummer',
+        masked: false,
+      },
+      {
+        label: 'PIN oder Passwort',
+        masked: true,
+      },
+    ]
+  },
+  dkb_bank: {
+    name: 'Deutsche Kreditbank',
+    code: 90090042,
+    credentials: [
+      {
+        label: 'Anmeldename',
+        masked: false,
+      },
+      {
+        label: 'PIN oder Passwort',
+        masked: true,
+      },
+    ]
+  },
+  ing_bank: {
+    name: 'ING-DiBa',
+    code: 90090042,
+    credentials: [
+      {
+        label: 'Kontonummer',
+        masked: false,
+      },
+      {
+        label: 'Diba-Key',
+        masked: true,
+      },
+      {
+        label: 'PIN',
+        masked: true,
+      },
+    ]
+  }
+}
+
+var dom = $('.bank-wrapper');
+var templates = {
+  link: '<a data-id="<%= id %>" href="#"><div class="bank-block"><i class="fa ra-<%= id %>"></i></div></a>'
+}
+for (var i in data){
+  dom.append(_.template(templates.link)({id: i}))
+}
+$('.bank-wrapper').on('click', 'a', function() {
+  var id = $(this).data('id');
+  var inputTemplate = '<input type="<% if (masked) { %>password<% } else { %>text<% } %>" placeholder="<%= label %>" autocomplete="false">';
+  var bank = data[id];
+  var inputs = '<span>' + bank.name + ' </span>';
+  for (var i = 0; i < bank.credentials.length; ++i) {
+    inputs += _.template(inputTemplate)(bank.credentials[i]);
+  }
+  $('.selected-wrapper').html(inputs);
+})
+
+function getAccounts(){
+  $.post('{% url "d:get_accounts" %}')
+}
+
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="container import">
+  <h3>DEPOTS IMPORTIEREN</h3>
+  <p>Lorem impsum</p>
+  <div class="bank-lists">
+    <div class="bank-wrapper">
+
+    </div>
+  </div>
+
+  <div class="selected-bank">
+    <div class="selected-wrapper">
+
+    </div>
+  </div>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Weiter
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <th></th>
+            <th>Commerzbank</th>
+            <th>IBAN</th>
+            <th>Betrag</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td>Girokono</td>
+              <td>DE3921312739812</td>
+              <td>3.250,31</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
