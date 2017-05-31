@@ -6,6 +6,22 @@
 
 
 <style type="text/css">
+    
+    
+    #contentContainer{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+       
+    }
+    
+    
+    
+    .floatRight{
+        float: right;
+    }
+    
+    
  .dottedline{
 
     stroke: #cccccc;
@@ -35,6 +51,12 @@ svg .securities_circle{
   stroke: gray;
   
 }
+    
+    .fa{
+        margin-right: 3px;
+    }
+    
+  
 
 </style>
 
@@ -55,7 +77,39 @@ svg .securities_circle{
 
 {% block body %} 
 
-    <svg width="500" height="400"></svg>
+    <div id="contentContainer">
+        <svg width="350" height="350"></svg>
+        <div style="max-width: 290px;">
+            <div style="background-color: lightgrey">
+            PORTFOLIO WERT:
+            </div>
+            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RENDITE:<span class="floatRight">100.000</span></div>
+            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RISIKO:<span class="floatRight">110000</span></div>
+            <div style="border-bottom: dotted 1px">ISIN:<span class="floatRight">34598uiui345</span></div>
+            <div style="font-weight: bold">RISIKO</div>
+            <div>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+            </div>
+            <div style="font-weight: bold">
+                RENDITE
+            </div>
+               <div>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+            </div>
+        
+        
+        </div>
+        <div style="max-width: 290px;background-color: #dfdedd; border-radius: 4px; padding: 5px; position:relative;">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+            <button class="orange" style="position: absolute; bottom: 10px;left: 50%">Jetzt optimieren</button>
+        </div>
+
+    </div>
+    
+
+
+
+
     <script type="text/javascript" src="{% static 'vendor/d3/d3.min.js' %}"></script>
 
 
@@ -66,7 +120,7 @@ svg .securities_circle{
     
     
     var svg= d3.select("svg"),
-        margin={top:20, right: 20,  bottom: 30, left: 50},
+        margin={top:20, right: 30,  bottom: 30, left: 50},
         width = +svg.attr("width")-margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
         g  = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")"),
