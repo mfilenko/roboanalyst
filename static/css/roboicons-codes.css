@@ -1,0 +1,8 @@
+
+.ra-dkb_bank:before { content: '\e800'; } /* '' */
+.ra-deutsche_bank:before { content: '\e801'; } /* '' */
+.ra-ing_bank:before { content: '\e802'; } /* '' */
+.ra-dzb_bank:before { content: '\e803'; } /* '' */
+.ra-sparkasse_bank:before { content: '\e804'; } /* '' */
+.ra-post_bank:before { content: '\e805'; } /* '' */
+.ra-commerze_bank:before { content: '\e806'; } /* '' */

@@ -4,6 +4,7 @@
         .selected-wrapper {
             background: @gray-lighter;
             padding: 10px;
+            display: inline-block;
             .name {
                 color: @brand-primary;
             }
@@ -13,25 +14,39 @@
     .bank-lists {
         .bank-wrapper {
             text-align: center;
-            .bank-block {
-                background: @gray-lighter;
+            a {
+
                 display: inline-block;
-                width: 100px;
-                height: 100px;
-                position: relative;
-                margin: 0 10px;
-                &:hover {
-                    &:after {
-                        content: '';
-                        background: @brand-primary;
-                        height: 3px;
-                        width: 100%;
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
+                .bank-block {
+                    background: @gray-lighter;
+                    display: inline-block;
+                    width: 100px;
+                    height: 100px;
+                    position: relative;
+                    margin: 0 10px;
+
+                    &:hover {
+                        i {
+                            color: @gray-base;
+                        }
+                        &:after {
+                            content: '';
+                            background: @brand-primary;
+                            height: 3px;
+                            width: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                        }
+                    }
+                    i {
+                        padding-top: 25px;
+                        font-size: 36px;
+                        color: @gray-light;
                     }
                 }
             }
+
 
         }
     }
