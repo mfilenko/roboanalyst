@@ -9,10 +9,31 @@
 
 
 <style type="text/css">
- #slidercontainer{
-                left: 10px;
-                position: absolute;
-                top: 100px;
+            #slidercontainer{
+                position: relative;
+                padding: 20px;
+             
+                border-style: solid;
+                width: 260px;
+            }
+    
+            #slidercontainer select{
+                -webkit-appearance: none; 
+                -moz-appearance: none;
+                appearance: none;
+                padding: 5px;
+                border: none;
+                width: 100%;
+                margin-bottom: 40px;
+                background-color: #dfdedd;
+               
+
+            }
+    
+            #slidercontainer select:focus{
+               border-style: none;
+                outline:none;
+
             }
 
             #ex1Slider .slider-selection {
@@ -105,7 +126,9 @@ Highcharts.chart('newBardiagramm', {
     floating: true,
     borderWidth: 0,
     backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-    shadow: false
+    shadow: false,
+    enabled: false
+    
   },
   credits: {
     enabled: false
@@ -148,14 +171,22 @@ Highcharts.chart('newBardiagramm', {
 	<script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/highlight.min.js' %}"></script>
 
 
- <div id="slidercontainer">
+        <div id="slidercontainer">
+            
+            <select>
+              <option value="volvo">DAX</option>
+              <option value="saab">MSCI World</option>
+              <option value="opel">MSCI Emerging Markets</option>
+              
+            </select>
 
             <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="0.03"/>
 
         </div>
 
-        <div id="newBardiagramm" style="min-width: 310px; max-width: 700px; height: 400px; margin: 0 auto"></div>
-
+        <div id="newBardiagramm" style="min-width: 200px; max-width: 400px; height:200px;"></div>
+        
+       
         <script type="text/javascript">
 // Without JQuery
             var slider = new Slider('#ex1', {
