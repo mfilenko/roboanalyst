@@ -215,8 +215,10 @@ drawDiagram()
 
 {% block infotext%}
 
-<div class="smallOrangeText">SIMULATION</div>
-<div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+<div class="panel-body">
+    <h3>SIMULATION</h3>
+    <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+</div>
 
 {%endblock%}
 
@@ -229,7 +231,7 @@ drawDiagram()
 
 <script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/highlight.min.js' %}"></script>
 
-<div id="slidercontainer">
+<div class="container">
 
     <select id="einflussfaktor" onchange="drawDiagram()">
       <option value="dax">DAX steigt um ...</option>
@@ -239,9 +241,10 @@ drawDiagram()
 
     <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="0.03" onchange="console.log('yo')"/>
 
+    <div id="newBardiagramm" style="min-width: 200px; max-width: 400px; height:200px;"></div>
 </div>
 
-<div id="newBardiagramm" style="min-width: 200px; max-width: 400px; height:200px;"></div>
+
 
 <script type="text/javascript">
     // Without JQuery

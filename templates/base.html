@@ -10,14 +10,10 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Istok+Web">
     <style type="text/css">
-        
-        
-        
         body{
             font-family: istok web;
             color: darkgray;
         }
-        
         #header{
             display: flex;
             flex-direction: row;
@@ -26,73 +22,73 @@
         }
         #logo{
             height: 50px;
-            
+
         }
         #logo img{
             height: 100%;
         }
-        
+
         #container{
             max-width: 960px;
             margin: 0 auto;
             margin-top: 20px;
         }
-    
-    
+
+
         #mainMenu #userinfo{
-            
+
             display: flex;
             flex-flow: row;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            
+
         }
-        
+
         #mainMenu #buttonBar{
-            
+
             text-align: center;
-            
+
         }
         #mainMenu input{
             height: 35px;
             padding-right: 20px;
             vertical-align: middle;
         }
-        
+
         button{
                 background-color: #dfdedd;
                 border: none;
                 padding: 8px;
-                
+
         }
-        
+
         .orange{
             background-color: #f0ad4e;
         }
-        
+
         div{
             margin-bottom: 5px;
-            
+
         }
-        
+
         #submenu{
             margin-bottom: 30px;
         }
-        
+
         #submenu #firstLine{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            
+
         }
-        
+
         #submenu #secondLine{
             background-color: #dfdedd;
             padding: 10px;
             min-height: 180px;
         }
-        
+
         .bigOrangeText{
            color: #f0ad4e;
             font-size: 25px;
@@ -105,30 +101,30 @@
             font-weight: bold;
             text-transform: uppercase;
         }
-        
-       
+
+
     </style>
     {% block css %}{% endblock %}
 </head>
 <body>
-    
-    <div id="container">
-    
+
+    <div class="container">
+
         <div id="header">
             <div id="logo">
                 <img src="https://www.dzbank.de/content/dzbank_de/de/_jcr_content/I18nCommons/logo.img.png/1469815570754.png"/>
             </div>
-            
+
             <div id="mainMenu">
-                
+
                 <div class="" id="userinfo">
                     <div>Das Derivateportal der DZ BANK</div>
                     <div>
                         <span class="text-info" style="padding-right: 10px; border-right: 1px solid rgb(49,112,143)"> &#9734; Merkzettel</span>
                         <span class="text-info" style="padding-left: 10px"><i class="fa fa-user-o" style="margin-right:5px"></i>Alexander</span></div>
                 </div>
-                
-                
+
+
                 <div id="buttonBar">
                     <button class="">Produkte</button>
                     <button class="">Märkte</button>
@@ -137,11 +133,11 @@
                     <button class="orange">Mein Portfolio</button>
                     <input  type="text" placeholder="Produkt / ISIN" width="20px"/><i style="margin-left:-20px" class="fa fa-search"></i>
                 </div>
-                
+
             </div>
 
         </div>
-        
+
         <div id="submenu">
             <div id="firstLine">
                 <div class="bigOrangeText">Depotcheck</div>
@@ -151,29 +147,81 @@
                     <button class="" onclick="window.location.href='/ec'">EFFIZIENSKURVE</button>
                     <button class="" onclick="window.location.href='/performance'">PERFORMANCEVERGLEICH</button>
                     <button class="" onclick="window.location.href='/simulation'">SIMULATION</button>
-                    
-                
+
+
                 </div>
             </div>
-            <div id="secondLine">
-                {% block infotext%} {% endblock%}
+            <div>
+                <div class="panel panel-default">
+                    {% block infotext %} {% endblock%}
+                </div>
             </div>
-            
+
             <script>
-            
+
             </script>
-        
+
         </div>
-        
-        {% block body %}{% endblock %}
-        
     </div>
-    
+
+    {% block body %}{% endblock %}
+
 
     <script type="text/javascript" src="{% static 'vendor/js-cookie/src/js.cookie.js' %}"></script>
     <script type="text/javascript" src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'vendor/highcharts/highstock.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/jquery-form/dist/jquery.form.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/underscore/underscore-min.js' %}"></script>
+
+    <script type="text/javascript">
+        var csrftoken = Cookies.get('csrftoken');
+        var duser = 'josueyy';
+        var templates = {
+          credentials: '<input class="credentials" type="<% if (masked) { %>password<% } else { %>text<% } %>" placeholder="<%= label %>" autocomplete="false">',
+          link: '<a data-id="<%= id %>" href="#"><div class="bank-block"><i class="fa ra-<%= id %>"></i></div></a>',
+          checkbox_asset: '<tr><td><input type="checkbox" name="client_account" value="<%= id %>" <% if (selected) { %>checked="checked"<% } %>></td><td><%= name %></td><td><%= account_number %></td><td><%= total_value %></td></tr>',
+          asset: '<tr><td><%= name %></td><td><%= account_number %></td><td><%= total_value %></td></tr>'
+        }
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        function figoLogin(user, credentials){
+          return $.post('{% url "d:figo_connect" %}', {'user': user, 'credentials': credentials, 'bank_code': 90090099});
+        }
+
+        function getAllAssets(user){
+          return $.get('{% url "d:all_assets" %}', {'user': user});
+        }
+
+        function renderAssets(d, table, template_name) {
+            var rows = '';
+            for (var i = 0; i < d.length; ++i) {
+                var item = d[i];
+                var references = item.references;
+                for (var j = 0; j < references.length; ++j) {
+                    // getting the account number
+                    item.account_number = '';
+                    if (references[j].type.id == 8) {
+                        item.account_number = references[j].code;
+                        break;
+                    }
+                }
+                rows += _.template(template_name)(item);
+            }
+            table.html(rows);
+        }
+
+    </script>
     {% block js %}{% endblock %}
 </body>
 </html>

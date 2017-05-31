@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block js %}
-<script type="text/javascript" src="{% static 'vendor/underscore/underscore-min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/import.js' %}"></script>
 <script type="text/javascript">
+var selectedBank;
 var data = {
   dzb_bank: {
     name: 'VR-Bank',
@@ -110,26 +111,37 @@ var data = {
 }
 
 var dom = $('.bank-wrapper');
-var templates = {
-  link: '<a data-id="<%= id %>" href="#"><div class="bank-block"><i class="fa ra-<%= id %>"></i></div></a>'
-}
+var accountsModal = $('#accountsModal')
 for (var i in data){
   dom.append(_.template(templates.link)({id: i}))
 }
+
 $('.bank-wrapper').on('click', 'a', function() {
   var id = $(this).data('id');
-  var inputTemplate = '<input type="<% if (masked) { %>password<% } else { %>text<% } %>" placeholder="<%= label %>" autocomplete="false">';
   var bank = data[id];
+  selectedBank = bank;
   var inputs = '<span>' + bank.name + ' </span>';
   for (var i = 0; i < bank.credentials.length; ++i) {
-    inputs += _.template(inputTemplate)(bank.credentials[i]);
+    inputs += _.template(templates.credentials)(bank.credentials[i]);
   }
+  inputs += '</form>'
   $('.selected-wrapper').html(inputs);
 })
 
-function getAccounts(){
-  $.post('{% url "d:get_accounts" %}')
-}
+$('#getAccounts').click(function (){
+  var acredentials = [];
+  $('.credentials').each(function(){
+    acredentials.push($(this).val());
+  });
+  figoLogin(duser, acredentials.join(',')).done(function(r) {
+    if (r.success) {
+      window.location = '{% url "import-depot" %}'
+
+    } else {
+      console.error(r);
+    }
+  });
+})
 
 </script>
 {% endblock %}
@@ -150,43 +162,9 @@ function getAccounts(){
     </div>
   </div>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  <a id="getAccounts" type="button" class="btn btn-primary btn-lg">
     Weiter
-  </button>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover">
-          <thead>
-            <th></th>
-            <th>Commerzbank</th>
-            <th>IBAN</th>
-            <th>Betrag</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td></td>
-              <td>Girokono</td>
-              <td>DE3921312739812</td>
-              <td>3.250,31</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
+  </a>
 </div>
 
 {% endblock %}
