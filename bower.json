@@ -22,6 +22,7 @@
     "seiyria-bootstrap-slider": "^9.8.0",
     "font-awesome": "^4.7.0",
     "underscore": "^1.8.3",
-    "js-cookie": "^2.1.4"
+    "js-cookie": "^2.1.4",
+    "d3": "^4.9.1"
   }
 }

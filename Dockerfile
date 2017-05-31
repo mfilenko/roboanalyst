@@ -2,9 +2,12 @@ FROM artursmet/python-2.7-node-6
 
 RUN mkdir /roboanalyst
 WORKDIR /roboanalyst
-COPY . .
+COPY requirements.txt .
+COPY package.json .
+COPY bower.json .bowerrc ./
 RUN pip install -r requirements.txt
 RUN npm install
+RUN bower --allow-root install
 
 EXPOSE 8000
 
