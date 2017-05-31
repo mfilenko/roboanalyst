@@ -63,12 +63,11 @@
 
 </style>
 
-
 {% endblock %}
 
 
-
 {% block js %}
+
 <script type="text/javascript">
 
 // OMG! Data
@@ -118,8 +117,6 @@ var einflussfaktor = {
 
 // Get current Einflussfaktor
 var currentEinflussfaktor = document.getElementById("einflussfaktor").value;
-var currentSlider = document.getElementById("ex1").value;
-alert(currentSlider);
 
 Highcharts.setOptions({
  colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
@@ -201,10 +198,12 @@ Highcharts.chart('newBardiagramm', {
   }]
 });
 </script>
+
 {% endblock %}
 
 
 {% block infotext%}
+
 <div class="smallOrangeText">SIMULATION</div>
 <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
 
