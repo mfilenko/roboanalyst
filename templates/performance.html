@@ -56,10 +56,58 @@ function createChart() {
         series: seriesOptions
     });
 };
+var data = [
+
+  /* Jun 2010 */
+[1275436800000,37.79,37.83,37.19,37.71],
+[1275523200000,37.88,37.94,37.20,37.59],
+[1275609600000,36.89,37.41,36.38,36.57],
+[1275868800000,36.90,37.02,35.79,35.85],
+[1275955200000,36.18,36.26,35.09,35.62],
+[1276041600000,35.92,35.99,34.64,34.74],
+[1276128000000,34.98,35.85,34.60,35.79],
+[1276214400000,35.46,36.27,35.34,36.22],
+[1276473600000,36.57,37.02,36.29,36.33],
+[1276560000000,36.52,37.12,36.50,37.10],
+[1276646400000,37.30,38.25,37.23,38.18],
+[1276732800000,38.66,38.99,38.50,38.84],
+[1276819200000,38.89,39.29,38.77,39.15],
+[1277078400000,39.67,39.86,38.39,38.60],
+[1277164800000,38.88,39.42,38.79,39.12],
+[1277251200000,39.23,39.24,38.27,38.71],
+[1277337600000,38.71,39.03,38.30,38.43],
+[1277424000000,38.58,38.61,37.97,38.10],
+[1277683200000,38.13,38.54,37.79,38.33],
+[1277769600000,37.73,37.77,36.33,36.60],
+[1277856000000,36.67,36.85,35.72,35.93],
+/* Jul 2010 */
+[1277942400000,36.33,36.40,34.75,35.50],
+[1278028800000,35.78,35.85,34.74,35.28],
+[1278374400000,35.86,36.11,35.17,35.52],
+[1278460800000,35.78,36.97,35.68,36.95],
+[1278547200000,37.50,37.56,36.41,36.87],
+[1278633600000,36.70,37.13,36.45,37.09],
+[1278892800000,36.93,37.41,36.41,36.76],
+[1278979200000,36.62,36.63,35.20,35.97],
+[1279065600000,35.63,36.54,35.57,36.10],
+[1279152000000,35.46,36.71,35.33,35.92],
+[1279238400000,36.17,36.42,35.49,35.70],
+[1279497600000,35.70,35.70,34.23,35.08],
+[1279584000000,34.70,36.13,34.29,35.98],
+[1279670400000,37.87,37.88,36.29,36.32],
+[1279756800000,36.81,37.14,36.47,37.00],
+[1279843200000,36.73,37.20,36.61,37.13],
+[1280102400000,37.14,37.16,36.82,37.04],
+[1280188800000,37.27,37.83,37.19,37.73],
+[1280275200000,37.67,38.00,37.18,37.28],
+[1280361600000,37.24,37.52,36.59,36.87],
+[1280448000000,36.56,37.10,36.41,36.75]
+]
+
 $.each(names, function (i, name) {
-
+    /*
     $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?',    function (data) {
-
+      */
         seriesOptions[i] = {
             name: name,
             data: data
@@ -72,22 +120,22 @@ $.each(names, function (i, name) {
         if (seriesCounter === names.length) {
             createChart();
         }
-    });
+    //});
 });
+
 </script>
 
 {% endblock %}
 
 {% block infotext%}
-<div class="smallOrangeText">PERFORMANCE</div>
-<div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
-
-
-
+<div class="panel-body">
+  <h3>PERFORMANCE</h3>
+  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+</div>
 {%endblock%}
 
 {% block body %}
-<div id="Ausgewogen">
+<div class='container' id="Ausgewogen">
   <h3>Ausgewogen</h3>
   <highchart id="stockChart" width="200"></highchart>
 </div>
