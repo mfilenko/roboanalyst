@@ -1,12 +1,20 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block css %}
+
+
+{% endblock %}
+
+
 {% block js %}
 <script type="text/javascript">
 
 
 // Make monochrome colors
 Highcharts.setOptions({
- colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
+ colors: ['#D35D15', '#FF6600', '#707172', '#0066B3']
 });
 
 
@@ -73,17 +81,18 @@ Highcharts.chart('baseLineChart', {
 
 
 </script>
+
 {% endblock %}
 
+{% block infotext%}
+<div class="smallOrangeText">STRESSTEST</div>
+<div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+
+{%endblock%}
 
 {% block body %}
-<div class="container">
-  <h3>Hello World</h3>
 
-  </div>
+<div id="baseLineChart">
 
-  <div id="baseLineChart">
 
-  </div>
-</div>
 {% endblock %}

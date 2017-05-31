@@ -1,86 +1,258 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% load static %}
 
-{% block css %} 
+{% block css %}
 
 
 <link href="{% static 'vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css' %}" rel="stylesheet" type="text/css"/>
 
 
 <style type="text/css">
- #container{
-                left: 10px;
-                position: absolute;
-                top: 100px;
+            #slidercontainer{
+                position: relative;
+                padding: 20px;
+
+                border-style: solid;
+                width: 260px;
+            }
+
+            #slidercontainer select{
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                padding: 5px;
+                border: none;
+                width: 100%;
+                margin-bottom: 40px;
+                background-color: #dfdedd;
+
+
+            }
+
+            #slidercontainer select:focus{
+               border-style: none;
+                outline:none;
+
             }
 
             #ex1Slider .slider-selection {
                 background: #BABABA;
             }
-            
+
             .slider.slider-horizontal .slider-track{
-                
+
                 height: 2px;
             }
-            
+
             .slider-handle{
                 top: -4px;
                 background-color: rgba(255,255,255,255);
                 background-image: none;
                 border-width: 2px;
                 border-color: #f08200;
-                
+
             }
             .tooltip-inner{
                 background-color: #999999;
             }
             .tooltip.top .tooltip-arrow{
-                
+
                 border-top-color: rgba(0,0,0,0);
             }
 
 </style>
 
-
-{% endblock %} 
-
+{% endblock %}
 
 
-{% block js %} 
+{% block js %}
 
-{% endblock %} 
+<script type="text/javascript">
+
+// OMG! Data
+var einflussfaktor = {
+    'dax': {
+        0.00: [0.00000,    0.00000,    0.00000,    0.00000],
+        0.01: [0.00160,    0.00145,    0.00100,    0.00075],
+        0.02: [0.00320,    0.00290,    0,00200,    0,00150],
+        0.03: [0.00480,    0.00435,    0.00300,    0.00225],
+        0.04: [0.00640,    0.00580,    0.00400,    0.00300],
+        0.05: [0.00800,    0.00725,    0.00500,    0.00375],
+        0.06: [0.00960,    0.00870,    0.00600,    0.00450],
+        0.07: [0.01120,    0.01015,    0.00700,    0.00525],
+        0.08: [0.01280,    0.01160,    0.00800,    0,00600],
+        0.09: [0.01440,    0.01305,    0.00900,    0.00675],
+        0.10: [0.01600,    0.01450,    0.01000,    0.00750]
+    },
+
+    'msci-world': {
+        0.00: [0.00000,    0.00000,    0.00000,    0.00000],
+        0.01: [0.00240,    0.00305,    0.00275,    0.00225],
+        0.02: [0.00480,    0.00610,    0.00550,    0.00450],
+        0.03: [0.00720,    0.00915,    0.00825,    0.00675],
+        0.04: [0.00960,    0.01220,    0.01100,    0.00900],
+        0.05: [0.01200,    0.01525,    0.01375,    0.01125],
+        0.06: [0.01440,    0.01830,    0.01650,    0.01350],
+        0.07: [0.01680,    0.02135,    0.01925,    0.01575],
+        0.08: [0.01920,    0.02440,    0.02200,    0.01800],
+        0.09: [0.02160,    0.02745,    0.02475,    0.02025],
+        0.10: [0.02400,    0.03050,    0.02750,    0.02250]
+    },
+
+    'msci-em': {
+        0.00: [0.0000,    0.00000,    0.00000,    0.00000],
+        0.01: [0.0010,    0.00050,    0.00125,    0.00200],
+        0.02: [0.0020,    0.00100,    0.00250,    0.00400],
+        0.03: [0.0030,    0.00150,    0.00375,    0.00600],
+        0.04: [0.0040,    0.00200,    0.00500,    0.00800],
+        0.05: [0.0050,    0.00250,    0.00625,    0.01000],
+        0.06: [0.0060,    0.00300,    0.00750,    0.01200],
+        0.07: [0.0070,    0.00350,    0.00875,    0.01400],
+        0.08: [0.0080,    0.00400,    0.01000,    0.01600],
+        0.09: [0.0090,    0.00450,    0.01125,    0.01800],
+        0.10: [0.0100,    0.00500,    0.01250,    0.02000]
+    }
+}
+
+function drawDiagram() {
+    var currentSlider = document.getElementById("ex1").value;
+    // Get current Einflussfaktor
+    var currentEinflussfaktor = document.getElementById("einflussfaktor").value;
+
+    Highcharts.setOptions({
+     colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
+    });
+
+    Highcharts.chart('newBardiagramm', {
+      title: {
+        text: 'Wertentwicklung',
+        style: {
+          display: 'none'
+        }
+      },
+      chart: {
+        type: 'bar'
+      },
+      yAxis: {
+        lineColor: '#0E3C8A',
+        gridLineWidth: 0,
+        lineWidth: 2,
+        title: {
+          text: '',
+        },
+        labels: {
+          enabled: false
+        },
+      },
+      xAxis: {
+        lineColor: '#0E3C8A',
+        lineWidth: 2,
+        labels: {
+          enabled: false
+        },
+        title: {
+          text: ''
+        },
+
+      },
+      tooltip: {
+        valueSuffix: '%'
+      },
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            enabled: true
+          }
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: 20,
+        y: 30,
+        floating: true,
+        borderWidth: 0,
+        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+        shadow: false,
+        enabled: false
+
+      },
+      credits: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+          name: '',
+          colorByPoint: true,
+          data: [{
+              name: 'Ihr Portfolio',
+              y: Math.round(einflussfaktor[currentEinflussfaktor][currentSlider][0] * 10000) / 100
+          }, {
+              name: 'Konservativ',
+              y: Math.round(einflussfaktor[currentEinflussfaktor][currentSlider][1] * 10000) / 100
+          }, {
+              name: 'Ausgewogen',
+              y: Math.round(einflussfaktor[currentEinflussfaktor][currentSlider][2] * 10000) / 100
+          }, {
+              name: 'Wachstumsorientiert',
+              y: Math.round(einflussfaktor[currentEinflussfaktor][currentSlider][3] * 10000) / 100
+          }]
+      }]
+    });
+}
+
+drawDiagram()
+</script>
+
+{% endblock %}
 
 
-{% block body %} 
+{% block infotext%}
+
+<div class="smallOrangeText">SIMULATION</div>
+<div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+
+{%endblock%}
 
 
-    <script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/modernizr.js' %}"></script>
+{% block body %}
 
-	<script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/modernizr.js' %}"></script>
 
-	<script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/highlight.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
 
+<script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/highlight.min.js' %}"></script>
 
- <div id="container">
+<div id="slidercontainer">
 
-            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+    <select id="einflussfaktor" onchange="drawDiagram()">
+      <option value="dax">DAX steigt um ...</option>
+      <option value="msci-world">MSCI World ETF steigt um ...</option>
+      <option value="msci-em">MSCI Emerging markets steigt um ...</option>
+    </select>
 
-        </div>
+    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="0.03" onchange="console.log('yo')"/>
 
-        <script type="text/javascript">
-// Without JQuery
-            var slider = new Slider('#ex1', {
-                formatter: function (value) {
-                    return value+ "% p.a.";
-                },
-                handle: 'square',
-                tooltip: 'always'
-            });
+</div>
 
+<div id="newBardiagramm" style="min-width: 200px; max-width: 400px; height:200px;"></div>
 
-        </script>
+<script type="text/javascript">
+    // Without JQuery
+    var slider = new Slider('#ex1', {
+        formatter: function (value) {
+            return Math.round(value * 100) + "% p.a.";
+        },
+        handle: 'square',
+        tooltip: 'always'
+    });
+    slider.on('change', function() {
+        drawDiagram();
+    });
+</script>
 
-
-
-{% endblock %} 
+{% endblock %}

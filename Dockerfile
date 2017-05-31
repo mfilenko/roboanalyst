@@ -6,6 +6,7 @@ COPY requirements.txt .
 COPY package.json .
 COPY bower.json .bowerrc ./
 RUN pip install -r requirements.txt
+RUN pip install requests
 RUN npm install
 RUN bower --allow-root install
 
