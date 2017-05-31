@@ -4,10 +4,10 @@ RUN mkdir /roboanalyst
 WORKDIR /roboanalyst
 COPY requirements.txt .
 COPY package.json .
-COPY .bowerrc .
+COPY bower.json .bowerrc ./
 RUN pip install -r requirements.txt
 RUN npm install
-RUN bower install
+RUN bower --allow-root install
 
 EXPOSE 8000
 
