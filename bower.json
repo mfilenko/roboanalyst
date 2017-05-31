@@ -19,6 +19,7 @@
     "highcharts": "^5.0.12",
     "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
-    "seiyria-bootstrap-slider": "^9.8.0"
+    "seiyria-bootstrap-slider": "^9.8.0",
+    "d3": "^4.9.1"
   }
 }
