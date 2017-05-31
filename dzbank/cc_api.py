@@ -40,14 +40,12 @@ class CCApi(object):
 
     @classmethod
     def get_accounts(cls, user, data):
-        # r = cls.sources_figo_connect(user, data)
-        # if r.status_code == 200:
-        return cls.asset_container(user, {})
-        # return r
+        r = cls.sources_figo_connect(user, data)
+        return r
 
     @classmethod
     def select_asset(cls, user, asset_id, selected):
-        url = '/asset-container/%s/?user=%s' % (asset_id, user)
+        url = 'asset-container/%s/?user=%s' % (asset_id, user)
         r = cls.get_sesssion().put(
             cls._get_url(url), data=json.dumps({'selected': selected}))
         return r

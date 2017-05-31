@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block js %}
-<script type="text/javascript" src="{% static 'vendor/underscore/underscore-min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/import.js' %}"></script>
 <script type="text/javascript">
 var selectedBank;
 var data = {
@@ -111,14 +111,11 @@ var data = {
 }
 
 var dom = $('.bank-wrapper');
-var templates = {
-  credentials: '<input class="credentials" type="<% if (masked) { %>password<% } else { %>text<% } %>" placeholder="<%= label %>" autocomplete="false">',
-  link: '<a data-id="<%= id %>" href="#"><div class="bank-block"><i class="fa ra-<%= id %>"></i></div></a>',
-  account: '<tr><td><input type="checkbox" name="client_account" value="<%= id %>" <% if (selected) { %>checked="checked"<% } %>></td><td><%= name %></td><td><%= account_number %></td><td><%= total_value %></td></tr>'
-}
+var accountsModal = $('#accountsModal')
 for (var i in data){
   dom.append(_.template(templates.link)({id: i}))
 }
+
 $('.bank-wrapper').on('click', 'a', function() {
   var id = $(this).data('id');
   var bank = data[id];
@@ -131,57 +128,18 @@ $('.bank-wrapper').on('click', 'a', function() {
   $('.selected-wrapper').html(inputs);
 })
 
-function getAccounts(user, credentials){
-  return $.post('{% url "d:get_accounts" %}', {'user': user, 'credentials': credentials, 'bank_code': 90090099});
-}
-
-$('#getAccounts').click(function() {
+$('#getAccounts').click(function (){
   var acredentials = [];
   $('.credentials').each(function(){
     acredentials.push($(this).val());
   });
-  getAccounts(duser, acredentials.join(',')).done(function(d){
-    if (d.success){
-      var accountsModal = $('#accountsModal'),
-          table = accountsModal.find('table tbody'),
-          depots = [];
-      d = d.data;
-      for (var i = 0; i < d.length; ++i) {
-        var item = d[i];
-        console.log(item);
-        var references = item.references;
-        for (var j = 0; j < references.length; ++j) {
-          // getting the account number
-          item.account_number = '';
-          if (references[j].type.id == 8) {
-            item.account_number = references[j].code;
-            break;
-          }
-        }
-        depots.push(item);
-      }
-      var rows = '';
-      for (var i = 0; i < depots.length; ++i){
-        rows += _.template(templates.account)(depots[i])
-      }
-      table.html(rows);
-      accountsModal.modal('show');
-    } else {
-      console.error(d);
-    }
-  });
-});
+  figoLogin(duser, acredentials.join(',')).done(function(r) {
+    if (r.success) {
+      window.location = '{% url "import-depot" %}'
 
-$('#importAccounts').click(function() {
-  var selectedAssets = [];
-  $('input[name="client_account"]').each(function() {
-    selectedAssets.push($(this).val() + ':' + $(this).prop('checked'));
-  })
-  $.post(
-    '{% url "d:select_assets" %}',
-    {'user': duser, 'assets': selectedAssets.join(',')}
-  ).done(function(d) {
-    console.log(d);
+    } else {
+      console.error(r);
+    }
   });
 })
 
@@ -204,35 +162,9 @@ $('#importAccounts').click(function() {
     </div>
   </div>
   <!-- Button trigger modal -->
-  <button id="getAccounts" type="button" class="btn btn-primary btn-lg">
+  <a id="getAccounts" type="button" class="btn btn-primary btn-lg">
     Weiter
-  </button>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="accountsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Wählen Sie Ihr Wertpapierdepot aus</h4>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover">
-          <thead>
-            <th></th>
-            <th>Konto</th>
-            <th>Nummer</th>
-            <th>Amount</th>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button id="importAccounts" type="button" class="btn btn-primary">OK</button>
-      </div>
-    </div>
-  </div>
+  </a>
 </div>
 
 {% endblock %}

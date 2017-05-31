@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'js/import.js' %}"></script>
+<script type="text/javascript">
+  var modal = $('#accountsModal');
+  modal.on('show.bs.modal', function (e) {
+    getAllAssets(duser).done(function(d){
+      renderAssets(
+        d.data, modal.find('table tbody'), templates.checkbox_asset);
+    });
+  });
+
+  $('#importAccounts').click(function() {
+    var selectedAssets = [];
+    $('input[name="client_account"]').each(function() {
+      selectedAssets.push($(this).val() + ':' + $(this).prop('checked'));
+    })
+    $.post(
+      '{% url "d:select_assets" %}',
+      {'user': duser, 'assets': selectedAssets.join(',')}
+    ).done(function(d) {
+      location.reload()
+    });
+  })
+
+  $(function() {
+    var table = $('.assets-table').find('tbody');
+    $.getJSON('{% url "d:selected_assets" %}', {'user': duser}, function(d){  renderAssets(d.data, table, templates.asset);
+    })
+  });
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h3>DEPOTS IMPORTIEREN</h3>
+  <p>Möchten Sie witere Depots importieren? Starten alternativ direkt mit der Analyse.</p>
+  <table class="table table-hover assets-table">
+    <tbody></tbody>
+  </table>
+
+  <div><span><i class="fa fa-plus"></i></span><a href="#" data-toggle="modal" data-target="#accountsModal">Weiteres depot importieren</a></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="accountsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Wählen Sie Ihr Wertpapierdepot aus</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <th></th>
+            <th>Konto</th>
+            <th>Nummer</th>
+            <th>Amount</th>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button id="importAccounts" type="button" class="btn btn-primary">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -4,6 +4,24 @@ from django import forms
 from .cc_api import CCApi
 
 
+class UserForm(forms.Form):
+    user = forms.CharField()
+
+    def get_selected_assets(self):
+        user = self.cleaned_data.get('user')
+        r = CCApi.asset_container(user, {'selected': 'true'})
+        if r.status_code == 200:
+            return json.loads(r.text)
+        return r.text
+
+    def get_all_assets(self):
+        user = self.cleaned_data.get('user')
+        r = CCApi.asset_container(user, {})
+        if r.status_code == 200:
+            return json.loads(r.text)
+        return r.text
+
+
 class GetAccountForm(forms.Form):
     user = forms.CharField()
     bank_code = forms.IntegerField()
@@ -17,7 +35,6 @@ class GetAccountForm(forms.Form):
         user = self.cleaned_data.get('user')
         bank_code = self.cleaned_data.get('bank_code')
         credentials = self.cleaned_data.get('credentials')
-        print 'calling'
         r = CCApi.get_accounts(
             user, {'credentials': credentials, 'bank_code': bank_code})
         if r.status_code == 200:
@@ -26,7 +43,6 @@ class GetAccountForm(forms.Form):
                 'data': json.loads(r.text)
             }
         else:
-            print r.text
             return {
                 'success': False,
                 'data': r.text

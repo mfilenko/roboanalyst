@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 
-from .forms import GetAccountForm, SelectAccountsForm
+from .forms import GetAccountForm, SelectAccountsForm, UserForm
 
 
 def import_depot(request):
@@ -14,7 +14,7 @@ def simulation(request):
 
 
 @require_POST
-def d_get_accounts(request):
+def d_figo_connect(request):
     form = GetAccountForm(request.POST)
     r = {}
     if form.is_valid():
@@ -26,7 +26,6 @@ def d_get_accounts(request):
 
 @require_POST
 def d_select_assets(request):
-    print request.POST
     form = SelectAccountsForm(request.POST)
     r = {}
     if form.is_valid():
@@ -35,3 +34,25 @@ def d_select_assets(request):
     else:
         r.update(success=False)
     return JsonResponse(r)
+
+
+@require_GET
+def d_get_selected_assets(request):
+    form = UserForm(request.GET)
+    if form.is_valid():
+        return JsonResponse({
+            'success': True,
+            'data': form.get_selected_assets()
+        })
+    return JsonResponse({'success': False})
+
+
+@require_GET
+def d_get_all_assets(request):
+    form = UserForm(request.GET)
+    if form.is_valid():
+        return JsonResponse({
+            'success': True,
+            'data': form.get_all_assets()
+        })
+    return JsonResponse({'success': False})
