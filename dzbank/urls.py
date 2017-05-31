@@ -21,7 +21,11 @@ from views import *
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^import/$', import_depot, name="import-depot"),
-    url(r'^d/chart1/$', chart1, name="d_chart1"),
+    url(r'^data/allocation/portfolio/current/$', current_portfolio_data, name="current-portfolio-data"),
+    url(r'^data/allocation/portfolio/conservative/$', conservative_portfolio_data, name="conservative-portfolio-data"),
+    url(r'^data/allocation/portfolio/balanced/$', balanced_portfolio_data, name="balanced-portfolio-data"),
+    url(r'^data/allocation/portfolio/bold/$', bold_portfolio_data, name="bold-portfolio-data"),
+    url(r'^data/simulation/$', simulation_data, name="simulation-data"),
     url(r'^simulation/$', simulation, name="simulation"),
     url(r'^admin/', admin.site.urls),
 ]
