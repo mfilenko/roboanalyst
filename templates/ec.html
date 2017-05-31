@@ -112,12 +112,12 @@ svg .securities_circle{
         <div class="col-sm-4">
             <svg width="350" height="350"></svg>
             <div style="margin-left: 20px">
-                <div style="vert">
+                <div>
                     <span style="color: blue;vertical-align: middle">&#9608;</span> Ihr Portfolio
                 </div>
 
-                <div class="dropdown" style="">
-                    <span class="dropbtn" style="color: orange;vertical-align: middle">&#9608;</span> Ausgegliches Portfolio <span style="color:red">&#9660;</span>
+                <div class="dropdown" style="width: 100%">
+                    <span class="dropbtn" style="color: orange;vertical-align: middle">&#9608;</span> <span id="currentPortfolioName">Ausgegliches Portfolio</span> <span style="color:red">&#9660;</span>
                      <div class="dropdown-content">
 
                      </div>
@@ -139,7 +139,7 @@ svg .securities_circle{
             <div style="font-weight: bold">
                 RENDITE
             </div>
-               <div>
+            <div>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
             </div>
 
@@ -235,6 +235,7 @@ svg .securities_circle{
         //draw ref line
         g.append("path")
           .datum(data.ec)
+          .attr("id","refLine")
           .attr("fill", "none")
           .attr("stroke", "orange")
           .attr("stroke-linejoin", "round")
@@ -270,9 +271,9 @@ svg .securities_circle{
     //Init popup
 
     var possiblePortfolios = [
-        {name:"Ausgewogenes Portfolio", risk:0.1},
-        {name:"Konservatives Portfolio", risk: 0.05},
-        {name:"Wachstumsbezogenes Portfolio", risk: 0.2}
+        {name:"Ausgewogenes Portfolio", risk:0.08},
+        {name:"Konservatives Portfolio", risk: 0.04},
+        {name:"Wachstumsbezogenes Portfolio", risk: 0.13}
     ];
 
     var currentlySelectedPortfolio = possiblePortfolios[0];
@@ -292,16 +293,32 @@ svg .securities_circle{
         function createHandler(portfolio){
             var myPort = portfolio;
             function handler(e){
-                console.log(myPort);
-                console.log(e);
+               switchPortfolio(myPort);
             }
 
             return handler;
 
         }
+        
+        switchPortfolio(currentlySelectedPortfolio);
 
-        function switchPortfolio(){
-
+        function switchPortfolio(portfolio){
+            //console.log("Switch portfolio: " + portfolio);
+            document.getElementById("currentPortfolioName").textContent = portfolio.name;
+            currentlySelectedPortfolio = portfolio;
+            
+            g.selectAll("#refPortfolio").remove();
+            var xPoint = x(portfolio.risk/riskMax);
+            
+            var line = document.getElementById("refLine");
+            var yPoint = line.getPointAtLength(xPoint);
+            
+            g.append("circle")
+                .attr("id","refPortfolio")
+                .attr("cx", xPoint)
+                .attr("cy",yPoint.y)
+                .attr("style","stroke:orange")
+                .attr("r",10);
 
 
         }
