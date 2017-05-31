@@ -48,7 +48,86 @@
 
 
 {% block js %}
+<script type="text/javascript">
 
+Highcharts.setOptions({
+ colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
+});
+
+Highcharts.chart('newBardiagramm', {
+  title: {
+    text: '',
+    style: {
+      display: 'none'
+    }
+  },
+  chart: {
+    type: 'bar'
+  },
+  yAxis: {
+    lineColor: '#0E3C8A',
+    gridLineWidth: 0,
+    lineWidth: 2,
+    title: {
+      text: '',
+    },
+    labels: {
+      enabled: false
+    },
+  },
+  xAxis: {
+    lineColor: '#0E3C8A',
+    lineWidth: 2,
+    labels: {
+      enabled: false
+    },
+    title: {
+      text: ''
+    },
+
+  },
+  tooltip: {
+    valueSuffix: ' millions'
+  },
+  plotOptions: {
+    bar: {
+      dataLabels: {
+        enabled: true
+      }
+    }
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'top',
+    x: 20,
+    y: 30,
+    floating: true,
+    borderWidth: 0,
+    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+    shadow: false
+  },
+  credits: {
+    enabled: false
+  },
+  credits: {
+    enabled: false
+  },
+  series: [{
+    name: 'Year 1800',
+    data: [107]
+  }, {
+    name: 'Year 1900',
+    data: [133]
+  }, {
+    name: 'Year 1950',
+    data: [133]
+  }, {
+    name: 'Year 2012',
+    data: [60]
+  }]
+});
+</script>
 {% endblock %}
 
 
@@ -64,15 +143,17 @@
 
  <div id="container">
 
-            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="3"/>
+            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
 
         </div>
+
+        <div id="newBardiagramm" style="min-width: 310px; max-width: 700px; height: 400px; margin: 0 auto"></div>
 
         <script type="text/javascript">
 // Without JQuery
             var slider = new Slider('#ex1', {
                 formatter: function (value) {
-                    return value * 100 + "% p.a.";
+                    return value+ "% p.a.";
                 },
                 handle: 'square',
                 tooltip: 'always'
