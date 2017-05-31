@@ -3,8 +3,55 @@
 {% load static %}
 
 {% block css %}
+<style>
+body {font-family: "Lato", sans-serif;}
 
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
 
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* Style the close button */
+.topright {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.topright:hover {color: red;}
+</style>
 {% endblock %}
 
 
@@ -14,7 +61,7 @@ Highcharts.setOptions({
 colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
 });
 
-Highcharts.chart('pie-chart', {
+Highcharts.chart('customer-pie-chart', {
     chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,
@@ -77,6 +124,154 @@ Highcharts.chart('pie-chart', {
     }]
 });
 
+Highcharts.chart('soft-pie-chart', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: '',
+        style: {
+        display: 'none'
+   }
+ },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    legend: {
+     enabled: true,
+     align: 'left',
+     verticalAlign: 'bottom',
+     width: 20,
+     itemStyle: {
+       color: '#000',
+       fontFamily: 'Frutiger-Cn'
+     }
+   },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+         enabled: false
+       },
+       showInLegend: true
+     }
+   },
+    series: [{
+        name: 'Portfolio',
+        colorByPoint: true,
+        data: [{
+            name: 'Liquidität <br><b>Einlageprodukte</b>',
+            y: 10
+        }, {
+            name: 'Aktienfonds <br><b>Wachstumsmärkte</b>',
+            y: 10,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Aktienfonds <br><b>Industrieländer</b>',
+            y: 40
+        }, {
+            name: 'Anleihenfonds <br><b>Hochzins</b>',
+            y: 5
+        }, {
+            name: 'Anleihenfonds <br><b>Standart</b>',
+            y: 30
+        }, {
+            name: 'Andere',
+            y: 3
+        }]
+    }]
+});
+
+
+function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+};
+
+Highcharts.chart('middle-pie-chart', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: '',
+        style: {
+        display: 'none'
+   }
+ },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    legend: {
+     enabled: true,
+     align: 'left',
+     verticalAlign: 'bottom',
+     width: 20,
+     itemStyle: {
+       color: '#000',
+       fontFamily: 'Frutiger-Cn'
+     }
+   },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+         enabled: false
+       },
+       showInLegend: true
+     }
+   },
+    series: [{
+        name: 'Portfolio',
+        colorByPoint: true,
+        data: [{
+            name: 'Liquidität <br><b>Einlageprodukte</b>',
+            y: 1
+        }, {
+            name: 'Aktienfonds <br><b>Wachstumsmärkte</b>',
+            y: 30,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Aktienfonds <br><b>Industrieländer</b>',
+            y: 10
+        }, {
+            name: 'Anleihenfonds <br><b>Hochzins</b>',
+            y: 35
+        }, {
+            name: 'Anleihenfonds <br><b>Standart</b>',
+            y: 10
+        }, {
+            name: 'Andere',
+            y: 1
+        }]
+    }]
+});
+
 </script>
 {% endblock %}
 
@@ -84,12 +279,38 @@ Highcharts.chart('pie-chart', {
 <div class="smallOrangeText">ALLOKATION</div>
 <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
 
-
-  <div id="pie-chart">
 {%endblock%}
 
 
 {% block body %}
+    <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Konservativ')">Konservativ</button>
+  <button class="tablinks" onclick="openCity(event, 'Ausgewogen')">Ausgewogen</button>
+  <button class="tablinks" onclick="openCity(event, 'Wachstumsorientiert')">Wachstumsorientiert</button>
+</div>
 
+
+    <div id="Konservativ" class="tabcontent">
+  <h3>Konservativ</h3>
+  <p>London is the capital city of England.</p>
+  <highchart id="customer-pie-chart" config="c.config" width="200"></highchart>
+</div>
+
+<div id="Ausgewogen" class="tabcontent">
+  <h3>Ausgewogen</h3>
+  <p>Paris is the capital of France.</p>
+  <highchart id="soft-pie-chart" config="c.config" width="200"></highchart>
+</div>
+
+<div id="Wachstumsorientiert" class="tabcontent">
+  <h3>Wachstumsorientiert</h3>
+  <p>Tokyo is the capital of Japan.</p>
+  <highchart id="middle-pie-chart" config="c.config" width="200"></highchart>
+
+</div>
+
+
+
+  <div id="pie-chart">
 
 {% endblock %}
