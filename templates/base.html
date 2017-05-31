@@ -35,7 +35,20 @@
             display: flex;
             flex-flow: row;
             justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
             
+        }
+        
+        #mainMenu #buttonBar{
+            
+            text-align: center;
+            
+        }
+        #mainMenu input{
+            height: 35px;
+            padding-right: 20px;
+            vertical-align: middle;
         }
         
         div{
@@ -60,24 +73,29 @@
                 
                 <div class="text-muted" id="userinfo">
                     <div>Das Derivateportal der DZ BANK</div>
-                    <div><span class="text-info" style="padding-right: 10px; border-right: 1px solid rgb(49,112,143)"> &#9734; Merkzettel</span><span class="text-info" style="padding-left: 10px">Alexander</span></div>
+                    <div>
+                        <span class="text-info" style="padding-right: 10px; border-right: 1px solid rgb(49,112,143)"> &#9734; Merkzettel</span>
+                        <span class="text-info" style="padding-left: 10px"><i class="fa fa-user-o" style="margin-right:5px"></i>Alexander</span></div>
                 </div>
                 
                 
-                <div>
-                    <button class="btn btn-default">Produkte</button>
-                    <button class="btn btn-default">Märkte</button>
-                    <button class="btn btn-default">News</button>
-                    <button class="btn btn-default">Magazin</button>
+                <div id="buttonBar">
+                    <button class="btn btn-default active">Produkte</button>
+                    <button class="btn btn-default active">Märkte</button>
+                    <button class="btn btn-default active">News</button>
+                    <button class="btn btn-default active">Magazin</button>
                     <button class="btn btn-primary">Mein Portfolio</button>
-                    <input  type="text" placeholder="Produkt / ISIN" width="20px"/>
+                    <input  type="text" placeholder="Produkt / ISIN" width="20px"/><i style="margin-left:-20px" class="fa fa-search"></i>
                 </div>
                 
             </div>
 
         </div>
+        
+        {% block body %}{% endblock %}
+        
     </div>
-    {% block body %}{% endblock %}
+    
 
     <script type="text/javascript" src="{% static 'vendor/js-cookie/src/js.cookie.js' %}"></script>
     <script type="text/javascript" src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
