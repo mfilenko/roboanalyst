@@ -5,6 +5,17 @@
 {% block css %}
 
 
+<style type="text/css">
+    #myContainer{
+
+        display: flex;
+        flex-direction: row;
+    }
+        
+        
+</style>
+
+
 {% endblock %}
 
 
@@ -19,9 +30,12 @@ var seriesOptions = [],
  * Create the chart when all data is loaded
  * @returns {undefined}
  */
+    
+    var chart;
+    
 function createChart() {
 
-    Highcharts.stockChart('stockChart', {
+    chart = Highcharts.stockChart('stockChart', {
 
         rangeSelector: {
             selected: 4
@@ -194,6 +208,8 @@ $.each(names, function (i, name) {
         }
     //});
 });
+    
+    chart.reflow();
 
 </script>
 
@@ -207,8 +223,15 @@ $.each(names, function (i, name) {
 {%endblock%}
 
 {% block body %}
-<div class='container' id="Ausgewogen">
-  <h3>Ausgewogen</h3>
-  <highchart id="stockChart" width="200"></highchart>
+<div class='container'>
+    <div id="myContainer">
+        <div style="flex-grow:2">
+            <h3>Ausgewogen</h3>
+            <div id="stockChart" ></div>
+        </div>
+        <div style="flex-grow:1; flex-basis: 33%; margin-top: 50px">
+                {% include "inclusions/optimization_block.html" %}
+        </div>
+    </div>
 </div>
 {% endblock %}
