@@ -126,3 +126,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 COMPRESS_OFFLINE = False
+
+ALLOWED_HOSTS = ['*']
