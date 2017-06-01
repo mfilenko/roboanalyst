@@ -60,6 +60,12 @@
 
     border-top-color: rgba(0,0,0,0);
 }
+    
+    #myContainer{
+        display: flex;
+        flex-direction: row;
+        align-items:  center;
+    }
 
 </style>
 
@@ -233,27 +239,30 @@ drawDiagram()
 <script type="text/javascript" src="{% static 'vendor/seiyria-bootstrap-slider/dependencies/js/highlight.min.js' %}"></script>
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <div>
-                <select id="einflussfaktor" onchange="drawDiagram()">
-                  <option value="dax">DAX steigt um ...</option>
-                  <option value="msci-world">MSCI World ETF steigt um ...</option>
-                  <option value="msci-em">MSCI Emerging markets steigt um ...</option>
-                </select>
-                <br><br><br>
-            </div>
-            <div>
-                <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="0.03"/>
+    <div id="myContainer">
+    
+       
+            <div style="flex-grow:2;flex-basis: 60%">
+                <div>
+                    <select id="einflussfaktor" onchange="drawDiagram()">
+                      <option value="dax">DAX steigt um ...</option>
+                      <option value="msci-world">MSCI World ETF steigt um ...</option>
+                      <option value="msci-em">MSCI Emerging markets steigt um ...</option>
+                    </select>
+                    <br><br><br>
+                </div>
+                <div>
+                    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.01" data-slider-value="0.03"/>
 
+                </div>
+                <div>
+                    <div id="newBardiagramm" style="height:200px;"></div>
+                </div>
             </div>
-            <div>
-                <div id="newBardiagramm" style="height:200px;"></div>
+            <div style="flex-grow:1; flex-basis: 33%">
+                {% include "inclusions/optimization_block.html" %}
             </div>
-        </div>
-        <div class="col-sm-4">
-            {% include "inclusions/optimization_block.html" %}
-        </div>
+        
     </div>
 </div>
 
