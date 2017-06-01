@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST, require_GET
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import GetAccountForm, SelectAccountsForm, UserForm
 
@@ -104,6 +105,7 @@ def d_simulation(request):
 
 
 @require_POST
+@csrf_exempt
 def d_figo_connect(request):
     form = GetAccountForm(request.POST)
     r = {}
