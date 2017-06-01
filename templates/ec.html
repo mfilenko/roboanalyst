@@ -94,7 +94,7 @@ svg .securities_circle{
 {% block infotext %}
 <div class="panel-body">
     <h3>EFFIZIENSKURVE</h3>
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    <p>Ziel eines jeden investors ist es, ein möglichst effizientes Depot zu besitzen, denn nur so steht das eingegangene Risiko in einem angemessenen Verhältnis zur Rendite. Durch Umschichtungen innerhalb des Depots ist es zu jeder Zeit möglich, das eigene Portfolio sehr nahe an die Effizienzgrenze / Effizienzkurve zu bringen.</p>
 </div>
 
 {%endblock%}
@@ -127,20 +127,20 @@ svg .securities_circle{
         </div>
         <div class="col-sm-4">
             <div style="background-color: lightgrey">
-            PORTFOLIO WERT:
+            PORTFOLIO WERT:<span class="floatRight" id="amountValue">100.000</span>
             </div>
-            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RENDITE:<span class="floatRight">100.000</span></div>
-            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RISIKO:<span class="floatRight">110000</span></div>
+            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RENDITE:<span class="floatRight" id="retValue">100.000</span></div>
+            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RISIKO:<span class="floatRight" id="riskValue">110000</span></div>
             <div style="border-bottom: dotted 1px">ISIN:<span class="floatRight">34598uiui345</span></div>
             <div style="font-weight: bold">RISIKO</div>
             <div>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                N/A
             </div>
             <div style="font-weight: bold">
                 RENDITE
             </div>
             <div>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                N/A
             </div>
 
 
@@ -299,20 +299,20 @@ svg .securities_circle{
             return handler;
 
         }
-        
+
         switchPortfolio(currentlySelectedPortfolio);
 
         function switchPortfolio(portfolio){
             //console.log("Switch portfolio: " + portfolio);
             document.getElementById("currentPortfolioName").textContent = portfolio.name;
             currentlySelectedPortfolio = portfolio;
-            
+
             g.selectAll("#refPortfolio").remove();
             var xPoint = x(portfolio.risk/riskMax);
-            
+
             var line = document.getElementById("refLine");
             var yPoint = line.getPointAtLength(xPoint);
-            
+
             g.append("circle")
                 .attr("id","refPortfolio")
                 .attr("cx", xPoint)
@@ -326,6 +326,25 @@ svg .securities_circle{
     })();
 
 
+
+</script>
+
+<script>
+    
+    //Fill the text fields with the customers portfolio information
+    //Reads the data from the variable data
+    
+    
+    function fillPortfolioInformation(){
+        
+        var l10nEUR = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" })
+        document.getElementById("amountValue").textContent = l10nEUR.format(data.portfolio.amount);
+        document.getElementById("retValue").textContent = Math.round(data.portfolio.ret * 10000)/100 + "%";
+        document.getElementById("riskValue").textContent = Math.round(data.portfolio.risk*10000)/100 + "%";
+    }
+
+    
+    fillPortfolioInformation();
 
 </script>
 
