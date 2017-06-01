@@ -11,8 +11,8 @@
         display: flex;
         flex-direction: row;
     }
-        
-        
+
+
 </style>
 
 
@@ -30,21 +30,26 @@ var seriesOptions = [],
  * Create the chart when all data is loaded
  * @returns {undefined}
  */
-    
+
     var chart;
-    
+
 function createChart() {
 
     chart = Highcharts.stockChart('stockChart', {
 
         rangeSelector: {
-            selected: 4
+            selected: 5
         },
-
+/*
         yAxis: {
             labels: {
+                labels: {
+                    align: 'left',
+                    x: 5,
+                    enabled: true
+                },
                 formatter: function () {
-                    return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                    //return (this.value > 0 ? ' + ' : '') + this.value + '%';
                 }
             },
             plotLines: [{
@@ -52,11 +57,19 @@ function createChart() {
                 width: 2,
                 color: 'silver'
             }]
-        },
+        },*/
+        yAxis: [{
+                lineWidth: 1,
+                opposite: true,
+                labels: {
+                    align: 'left',
+                    x: 5
+                }
+            }],
 
         plotOptions: {
             series: {
-                compare: 'percent',
+                //compare: 'percent',
                 showInNavigator: true
             }
         },
@@ -357,7 +370,7 @@ var data = {0: [
 ],
 
 1:[
-  [	1325462400000,44693.60	],  1325462400000
+  [	1325462400000,44693.60	],
   [	1325721600000,44707.81	],
   [	1326240000000,44722.03	],
   [	1326844800000,44736.25	],
@@ -1214,6 +1227,17 @@ var data = {0: [
   [	1495584000000,57616.84	]
 ]}
 
+// Add some entropy to the data %)
+for (var i = 0; i < data[1].length; i++) {
+    data[1][i][1] = data[1][i][1] + Math.random() * (500 - -500) - 500;
+}
+for (var i = 0; i < data[2].length; i++) {
+    data[2][i][1] = data[2][i][1] + Math.random() * (500 - -500) - 500;
+}
+for (var i = 0; i < data[3].length; i++) {
+    data[3][i][1] = data[3][i][1] + Math.random() * (500 - -500) - 500;
+}
+
 $.each(names, function (i, name) {
     /*
     $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?',    function (data) {
@@ -1232,7 +1256,7 @@ $.each(names, function (i, name) {
         }
     //});
 });
-    
+
     chart.reflow();
 
 </script>
@@ -1250,7 +1274,7 @@ $.each(names, function (i, name) {
 <div class='container'>
     <div id="myContainer">
         <div style="flex-grow:2">
-            <h3>Ausgewogen</h3>
+            <!--<h3>Ausgewogen</h3>-->
             <div id="stockChart" ></div>
         </div>
         <div style="flex-grow:1; flex-basis: 33%; margin-top: 50px">
