@@ -3,7 +3,14 @@
 {% load static %}
 
 {% block css %}
-
+<style type="text/css">
+    #myContainer{
+        display: flex;
+        flex-flow: row;
+        
+    }
+   
+</style>
 
 {% endblock %}
 
@@ -18,7 +25,7 @@ Highcharts.setOptions({
 });
 
 
-Highcharts.chart('baseLineChart', {
+var chart = Highcharts.chart('baseLineChart', {
   title: {
     text: '',
     style: {
@@ -78,6 +85,8 @@ Highcharts.chart('baseLineChart', {
   }]
 
 });
+    
+    chart.reflow();
 
 
 </script>
@@ -94,7 +103,14 @@ Highcharts.chart('baseLineChart', {
 {% block body %}
 
 <div class="container">
-  <div id="baseLineChart"></div>
+    <div id="myContainer">
+    
+  <div id="baseLineChart" style="flex-grow:2; min-height: 300px; max-height: 400px"></div>
+        <div style="flex-grow:1; flex-basis: 33%; margin-top: 50px">
+                {% include "inclusions/optimization_block.html" %}
+        </div>
+        
+    </div>
 </div>
 
 
