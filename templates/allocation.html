@@ -57,219 +57,139 @@ div.tab button.active {
 {% block js %}
 <script type="text/javascript">
 Highcharts.setOptions({
-colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
+    colors: ['#D35D15', '#FF6600', '#F0F0F0', '#0066B3', '#707172', '#ABABAB']
 });
 
-Highcharts.chart('customer-pie-chart', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: '',
-        style: {
-        display: 'none'
-   }
- },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    legend: {
-     enabled: true,
-     align: 'left',
-     verticalAlign: 'bottom',
-     width: 20,
-     itemStyle: {
-       color: '#000',
-       fontFamily: 'Frutiger-Cn'
-     }
-   },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-         enabled: false
-       },
-       showInLegend: true
-     }
-   },
+var charts = [
+  {
+    id: 'customer-pie-chart',
     series: [{
         name: 'Portfolio',
         colorByPoint: true,
         data: [{
             name: 'Liquidität <br><b>Einlageprodukte</b>',
-            y: 36
-        }, {
-            name: 'Aktienfonds <br><b>Wachstumsmärkte</b>',
-            y: 32,
-            sliced: true,
-            selected: true
-        }, {
-            name: 'Aktienfonds <br><b>Industrieländer</b>',
-            y: 14
-        }, {
-            name: 'Anleihenfonds <br><b>Hochzins</b>',
-            y: 9
-        }, {
-            name: 'Anleihenfonds <br><b>Standart</b>',
-            y: 6
-        }, {
-            name: 'Andere',
-            y: 3
-        }]
-    }]
-});
-
-Highcharts.chart('soft-pie-chart', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: '',
-        style: {
-        display: 'none'
-   }
- },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    legend: {
-     enabled: true,
-     align: 'left',
-     verticalAlign: 'bottom',
-     width: 20,
-     itemStyle: {
-       color: '#000',
-       fontFamily: 'Frutiger-Cn'
-     }
-   },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-         enabled: false
-       },
-       showInLegend: true
-     }
-   },
-    series: [{
-        name: 'Portfolio',
-        colorByPoint: true,
-        data: [{
-            name: 'Liquidität <br><b>Einlageprodukte</b>',
-            y: 10
-        }, {
-            name: 'Aktienfonds <br><b>Wachstumsmärkte</b>',
-            y: 10,
-            sliced: true,
-            selected: true
-        }, {
-            name: 'Aktienfonds <br><b>Industrieländer</b>',
-            y: 40
-        }, {
-            name: 'Anleihenfonds <br><b>Hochzins</b>',
             y: 5
         }, {
-            name: 'Anleihenfonds <br><b>Standart</b>',
-            y: 30
+            name: 'Aktienfonds <br><b>Wachstumsmärkte</b>',
+            y: 60,
         }, {
-            name: 'Andere',
-            y: 3
+            name: 'Aktienfonds <br><b>Industrieländer</b>',
+            y: 10
+        }, {
+            name: 'Anleihenfonds <br><b>Hochzins</b>',
+            y: 20
+        }, {
+            name: 'Anleihenfonds <br><b>Standart</b>',
+            y: 5
         }]
     }]
-});
-
-
-function openCity(evt, cityName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-};
-
-Highcharts.chart('middle-pie-chart', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: '',
-        style: {
-        display: 'none'
-   }
- },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    legend: {
-     enabled: true,
-     align: 'left',
-     verticalAlign: 'bottom',
-     width: 20,
-     itemStyle: {
-       color: '#000',
-       fontFamily: 'Frutiger-Cn'
-     }
-   },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-         enabled: false
-       },
-       showInLegend: true
-     }
-   },
+  },
+  {
+    id: 'soft-pie-chart',
     series: [{
         name: 'Portfolio',
         colorByPoint: true,
         data: [{
             name: 'Liquidität <br><b>Einlageprodukte</b>',
-            y: 1
+            y: 5
         }, {
             name: 'Aktienfonds <br><b>Wachstumsmärkte</b>',
-            y: 30,
-            sliced: true,
-            selected: true
+            y: 75,
         }, {
             name: 'Aktienfonds <br><b>Industrieländer</b>',
-            y: 10
+            y: 0
+        }, {
+            name: 'Anleihenfonds <br><b>Hochzins</b>',
+            y: 20
+        }, {
+            name: 'Anleihenfonds <br><b>Standart</b>',
+            y: 0
+        }]
+    }]
+  },
+  {
+    id: 'middle-pie-chart',
+    series: [{
+        name: 'Portfolio',
+        colorByPoint: true,
+        data: [{
+            name: 'Liquidität <br><b>Einlageprodukte</b>',
+            y: 5
+        }, {
+            name: 'Aktienfonds <br><b>Wachstumsmärkte</b>',
+            y: 45,
+        }, {
+            name: 'Aktienfonds <br><b>Industrieländer</b>',
+            y: 15
+        }, {
+            name: 'Anleihenfonds <br><b>Hochzins</b>',
+            y: 30
+        }, {
+            name: 'Anleihenfonds <br><b>Standart</b>',
+            y: 5
+        },]
+    }]
+  },
+  {
+    id: 'bold-pie-chart',
+    series: [{
+        name: 'Portfolio',
+        colorByPoint: true,
+        data: [{
+            name: 'Liquidität <br><b>Einlageprodukte</b>',
+            y: 5
+        }, {
+            name: 'Aktienfonds <br><b>Wachstumsmärkte</b>',
+            y: 0,
+        }, {
+            name: 'Aktienfonds <br><b>Industrieländer</b>',
+            y: 15
         }, {
             name: 'Anleihenfonds <br><b>Hochzins</b>',
             y: 35
         }, {
             name: 'Anleihenfonds <br><b>Standart</b>',
-            y: 10
-        }, {
-            name: 'Andere',
-            y: 1
+            y: 45
         }]
     }]
-});
+  },
+]
+
+for(var i = 0; i < charts.length; ++i) {
+  Highcharts.chart(charts[i].id, {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie',
+        marginTop: 0,
+        spacingBottom: 15,
+        spacingTop: 10,
+        spacingLeft: 10,
+        spacingRight: 10,
+        backgroundColor:'rgba(255, 255, 255, 0)'
+    },
+    title: {
+        text: ''
+    },
+    credits: false,
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: false
+        }
+    },
+    series: charts[i].series
+  });
+}
+
 
 </script>
 {% endblock %}
@@ -284,35 +204,246 @@ Highcharts.chart('middle-pie-chart', {
 
 {% block body %}
 <div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Ihr Portfolio</h3>
+      <div class="performance">Performance <span class="text-success">2,37 % p.a.</span></div>
+      <div>
+        <div id="customer-pie-chart" style="height: 300px;"></div>
+      </div>
+      <div class="container-table">
+        <table class="legend table table-hover">
+          <tr>
+            <td class="color"></td>
+            <td>
+              <b>Liquidität</b><br>
+              Einlageprodukte
+            </td>
+            <td>5 %</td>
+          </tr>
+          <tr>
+            <td class="color"></td>
+            <td>
+              <b>Aktienfonds</b><br>
+              Wachstumsmärkte
+            </td>
+            <td>60 %</td>
+          </tr>
+          <tr>
+            <td class="color"></td>
+            <td>
+              <b>Aktienfonds</b><br>
+              Industrieländer
+            </td>
+            <td>10 %</td>
+          </tr>
+          <tr>
+            <td class="color"></td>
+            <td>
+              <b>Anleihenfonds</b><br>
+              Hochzins
+            </td>
+            <td>20 %</td>
+          </tr>
+          <tr>
+            <td class="color"></td>
+            <td>
+              <b>Anleihenfonds</b><br>
+              Standart
+            </td>
+            <td>5 %</td>
+          </tr>
+        </table>
+      </div>
 
-    <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'Konservativ')">Konservativ</button>
-    <button class="tablinks" onclick="openCity(event, 'Ausgewogen')">Ausgewogen</button>
-    <button class="tablinks" onclick="openCity(event, 'Wachstumsorientiert')">Wachstumsorientiert</button>
+
+    </div>
+    <div class="col-md-9">
+
+      <div>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs nav-allocation" role="tablist">
+          <li role="presentation" style="width: 250px;">
+            <a href="#conservative" aria-controls="conservative" role="tab" data-toggle="tab">
+            <div>KONSERVATIV</div>
+            <div class="performance">Performance <span class="text-success">1,8 % p.a.</span></div>
+            <div id="soft-pie-chart" style="height: 200px;"></div>
+            </a>
+          </li>
+          <li role="presentation" style="width: 250px;" class="active">
+            <a href="#medium" aria-controls="medium" role="tab" data-toggle="tab">
+            <div>AUSGEWOGEN</div>
+            <div class="performance">Performance <span class="text-success">3,2 % p.a.</span></div>
+            <div id="middle-pie-chart" style="height: 200px;"></div>
+            </a>
+          </li>
+          <li role="presentation" style="width: 250px;">
+            <a href="#bold" aria-controls="bold" role="tab" data-toggle="tab">
+              <div>WACHSTUMSORIENTIERT</div>
+              <div class="performance">Performance <span class="text-success">5,1 % p.a.</span></div>
+              <div id="bold-pie-chart" style="height: 200px;"></div>
+            </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="conservative">
+            <div class="container-table">
+              <table class="legend table table-hover">
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Liquidität</b><br>
+                    Einlageprodukte
+                  </td>
+                  <td>5 %</td>
+                </tr>
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Aktienfonds</b><br>
+                    Wachstumsmärkte
+                  </td>
+                  <td>75 %</td>
+                </tr>
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Anleihenfonds</b><br>
+                    Hochzins
+                  </td>
+                  <td>20 %</td>
+                </tr>
+              </table>
+
+            </div>
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="medium">
+
+            <div class="container-table">
+              <table class="legend table table-hover">
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Liquidität</b><br>
+                    Einlageprodukte
+                  </td>
+                  <td>5 %</td>
+                </tr>
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Aktienfonds</b><br>
+                    Wachstumsmärkte
+                  </td>
+                  <td>45 %</td>
+                </tr>
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Aktienfonds</b><br>
+                    Industrieländer
+                  </td>
+                  <td>15 %</td>
+                </tr>
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Anleihenfonds</b><br>
+                    Hochzins
+                  </td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Anleihenfonds</b><br>
+                    Standart
+                  </td>
+                  <td>5</td>
+                </tr>
+              </table>
+
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      Dieses Musterportfolio hat eine bessere Performance als Ihres.
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="pull-right">
+                        <button class="btn btn-lg btn-primary">Jetzt optimieren</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="bold">
+            <div class="container-table">
+              <table class="legend table table-hover">
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Liquidität</b><br>
+                    Einlageprodukte
+                  </td>
+                  <td>5 %</td>
+                </tr>
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Aktienfonds</b><br>
+                    Industrieländer
+                  </td>
+                  <td>15 %</td>
+                </tr>
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Anleihenfonds</b><br>
+                    Hochzins
+                  </td>
+                  <td>35 %</td>
+                </tr>
+                <tr>
+                  <td class="color"></td>
+                  <td>
+                    <b>Anleihenfonds</b><br>
+                    Standart
+                  </td>
+                  <td>45 %</td>
+                </tr>
+              </table>
+
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      Dieses Musterportfolio hat eine bessere Performance als Ihres.
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="pull-right">
+                        <button class="btn btn-lg btn-primary">Jetzt optimieren</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
   </div>
-
-
-    <div id="Konservativ" class="tabcontent">
-  <h3>Konservativ</h3>
-  <p>Performance: 1,8 % p.a.</p>
-  <highchart id="customer-pie-chart" config="c.config" width="200"></highchart>
-</div>
-
-<div id="Ausgewogen" class="tabcontent">
-  <h3>Ausgewogen</h3>
-  <p>Performance: <font color="green">3,2 % p.a.</font></p>
-  <highchart id="soft-pie-chart" config="c.config" width="200"></highchart>
-</div>
-
-<div id="Wachstumsorientiert" class="tabcontent">
-  <h3>Wachstumsorientiert</h3>
-  <p>Performance: <font color="green">5,1 % p.a.</font></p>
-  <highchart id="middle-pie-chart" config="c.config" width="200"></highchart>
-
-</div>
-
-
-
 </div>
 
 {% endblock %}
