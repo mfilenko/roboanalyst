@@ -5,17 +5,6 @@
 {% block css %}
 
 
-<style type="text/css">
-    #myContainer{
-
-        display: flex;
-        flex-direction: row;
-    }
-        
-        
-</style>
-
-
 {% endblock %}
 
 
@@ -30,12 +19,9 @@ var seriesOptions = [],
  * Create the chart when all data is loaded
  * @returns {undefined}
  */
-    
-    var chart;
-    
 function createChart() {
 
-    chart = Highcharts.stockChart('stockChart', {
+    Highcharts.stockChart('stockChart', {
 
         rangeSelector: {
             selected: 4
@@ -357,7 +343,7 @@ var data = {0: [
 ],
 
 1:[
-  [	1325462400000,44693.60	],  1325462400000
+  [	1325462400000,44693.60	], 
   [	1325721600000,44707.81	],
   [	1326240000000,44722.03	],
   [	1326844800000,44736.25	],
@@ -1232,8 +1218,6 @@ $.each(names, function (i, name) {
         }
     //});
 });
-    
-    chart.reflow();
 
 </script>
 
@@ -1241,21 +1225,16 @@ $.each(names, function (i, name) {
 
 {% block infotext%}
 <div class="panel-body">
-  <h3>DEPOTHISTORIE</h3>
-  <p>Hier können Sie die historische Entwicklung Ihrer/Ihres Depots ganz einfach nachvollziehen und mit der unserer Musterdepots vergleichen.</p>
+  <h3>PERFORMANCE</h3>
+  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 </div>
 {%endblock%}
 
 {% block body %}
-<div class='container'>
-    <div id="myContainer">
-        <div style="flex-grow:2">
-            <h3>Ausgewogen</h3>
-            <div id="stockChart" ></div>
-        </div>
-        <div style="flex-grow:1; flex-basis: 33%; margin-top: 50px">
-                {% include "inclusions/optimization_block.html" %}
-        </div>
-    </div>
+<div class='container' id="Ausgewogen">
+  <h3>Ausgewogen</h3>
+  <highchart id="stockChart" width="200"></highchart>
 </div>
+
+
 {% endblock %}

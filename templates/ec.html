@@ -127,10 +127,10 @@ svg .securities_circle{
         </div>
         <div class="col-sm-4">
             <div style="background-color: lightgrey">
-            PORTFOLIO WERT:
+            PORTFOLIO WERT:<span class="floatRight" id="amountValue">100.000</span>
             </div>
-            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RENDITE:<span class="floatRight">100.000</span></div>
-            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RISIKO:<span class="floatRight">110000</span></div>
+            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RENDITE:<span class="floatRight" id="retValue">100.000</span></div>
+            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RISIKO:<span class="floatRight" id="riskValue">110000</span></div>
             <div style="border-bottom: dotted 1px">ISIN:<span class="floatRight">34598uiui345</span></div>
             <div style="font-weight: bold">RISIKO</div>
             <div>
@@ -326,6 +326,25 @@ svg .securities_circle{
     })();
 
 
+
+</script>
+
+<script>
+    
+    //Fill the text fields with the customers portfolio information
+    //Reads the data from the variable data
+    
+    
+    function fillPortfolioInformation(){
+        
+        var l10nEUR = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" })
+        document.getElementById("amountValue").textContent = l10nEUR.format(data.portfolio.amount);
+        document.getElementById("retValue").textContent = Math.round(data.portfolio.ret * 10000)/100 + "%";
+        document.getElementById("riskValue").textContent = Math.round(data.portfolio.risk*10000)/100 + "%";
+    }
+
+    
+    fillPortfolioInformation();
 
 </script>
 
