@@ -130,13 +130,13 @@
 
     <div id="submenu">
       <div id="firstLine">
-        <div style="color: rgb(240,130,0);font-size:25px">Depotcheck</div>
+        <div style="color: rgb(240,130,0);font-size:25px">DEPOTCHECK</div>
         {% block second_menu %}
         <div>
-          <a class="btn btn-tab" href="{% url 'allocation' %}">ALLOKATION</a>
+          <a class="btn btn-tab" href="{% url 'allocation' %}">PERFORMANCE</a>
           <a class="btn btn-tab" href="{% url 'stresstest' %}">STRESS TESTS</a>
           <a class="btn btn-tab" href="{% url 'ec' %}">EFFIZIENSKURVE</a>
-          <a class="btn btn-tab" href="{% url 'performance' %}">PERFORMANCEVERGLEICH</a>
+          <a class="btn btn-tab" href="{% url 'performance' %}">DEPOTHISTORIE</a>
           <a class="btn btn-tab" href="{% url 'simulation' %}">SIMULATION</a>
         </div>
         {% endblock %}
