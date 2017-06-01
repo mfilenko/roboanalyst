@@ -4,7 +4,7 @@
 {% block section %}DEPOTS IMPORTIEREN{% endblock%}
 
 {% block infotext %}
-<div class="panel-body">Möchten Sie witere Depots importieren? Starten alternativ direkt mit der Analyse.</div>
+<div class="panel-body">Wählen Sie Ihre Depots für die Analyse aus.</div>
 {% endblock%}
 
 {% block js %}
@@ -44,12 +44,12 @@
   <table class="table table-hover assets-table">
     <tbody></tbody>
   </table>
-  <div><a href="#" class="btn" data-toggle="modal" data-target="#accountsModal"><i class="fa fa-plus"></i> Weiteres depot importieren</a></div>
+  <div><a href="#" class="btn" data-toggle="modal" data-target="#accountsModal"><i class="fa fa-plus"></i> Depots auswählen</a></div>
 
   <div>
     <div class="pull-right">
       <div class="btn-together">
-        <a style="margin: 0 20px;" class="btn btn-lg btn-primary" href="{% url 'import_depot' %}">Züruck</a>
+        <a style="margin: 0 20px;" class="btn btn-lg btn-primary" href="{% url 'import_depot' %}">Zurück</a>
         <a class="btn btn-lg btn-next" href="{% url 'allocation' %}">Analyse starten</a><a class="btn btn-lg btn-next-orange" href="{% url 'allocation' %}">&gt;</a>
       </div>
     </div>
@@ -70,7 +70,7 @@
             <th></th>
             <th>Konto</th>
             <th>Nummer</th>
-            <th>Amount</th>
+            <th>Betrag</th>
           </thead>
           <tbody></tbody>
         </table>
