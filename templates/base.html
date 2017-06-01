@@ -133,10 +133,10 @@
         <div style="color: rgb(240,130,0);font-size:25px">DEPOTCHECK</div>
         {% block second_menu %}
         <div>
-          <a class="btn btn-tab" href="{% url 'allocation' %}">Allokation</a>
+          <a class="btn btn-tab" href="{% url 'allocation' %}">STRUKTUR</a>
+          <a class="btn btn-tab" href="{% url 'performance' %}">DEPOTHISTORIE</a>
           <a class="btn btn-tab" href="{% url 'stresstest' %}">STRESS TESTS</a>
           <a class="btn btn-tab" href="{% url 'ec' %}">EFFIZIENSKURVE</a>
-          <a class="btn btn-tab" href="{% url 'performance' %}">DEPOTHISTORIE</a>
           <a class="btn btn-tab" href="{% url 'simulation' %}">SIMULATION</a>
         </div>
         {% endblock %}

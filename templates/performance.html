@@ -66,12 +66,19 @@ function createChart() {
                     x: 5
                 }
             }],
-
+legend: {
+    enabled: true,
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
         plotOptions: {
             series: {
                 //compare: 'percent',
                 showInNavigator: true
-            }
+            },
+
+
         },
 
         tooltip: {
