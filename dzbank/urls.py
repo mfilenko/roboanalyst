@@ -37,8 +37,6 @@ urlpatterns = [
         TemplateView.as_view(template_name='performance.html'),
         name="performance"),
     url(r'^simulation/$', simulation, name="simulation"),
-    url(r'^optimization/$',
-        TemplateView.as_view(template_name='optimization.html')),
 
     url(r'^d/', include('dzbank.urls_data', namespace="d")),
     url(r'^admin/', admin.site.urls),
