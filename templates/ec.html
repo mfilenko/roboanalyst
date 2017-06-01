@@ -83,7 +83,8 @@ svg .securities_circle{
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
+    
+   
 
 
 </style>
@@ -108,45 +109,43 @@ svg .securities_circle{
 {% block body %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <svg width="350" height="350"></svg>
+    <div style="display: flex; flex-flow: row; justify-content: space-between">
+        <div style="flex-grow:2;flex-basis:66%">
+            <svg width="600" height="500"></svg>
             <div style="margin-left: 20px">
-                <div>
+               
+              
+
+            </div>
+        </div>
+        <div style="display: flex;flex-flow: column;flex-grow: 1;width: 33%;">
+            
+             <div>
                     <span style="color: blue;vertical-align: middle">&#9608;</span> Ihr Portfolio
                 </div>
 
-                <div class="dropdown" style="width: 100%">
+              <div class="dropdown" style="width: 100%; margin-bottom: 20px">
                     <span class="dropbtn" style="color: orange;vertical-align: middle">&#9608;</span> <span id="currentPortfolioName">Ausgegliches Portfolio</span> <span style="color:red">&#9660;</span>
                      <div class="dropdown-content">
 
                      </div>
                 </div>
-
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div style="background-color: lightgrey">
-            PORTFOLIO WERT:<span class="floatRight" id="amountValue">100.000</span>
-            </div>
-            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RENDITE:<span class="floatRight" id="retValue">100.000</span></div>
-            <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RISIKO:<span class="floatRight" id="riskValue">110000</span></div>
-            <div style="border-bottom: dotted 1px">ISIN:<span class="floatRight">34598uiui345</span></div>
-            <div style="font-weight: bold">RISIKO</div>
-            <div>
-                N/A
-            </div>
-            <div style="font-weight: bold">
-                RENDITE
-            </div>
-            <div>
-                N/A
-            </div>
+            
+            
+            <div style="margin-bottom: 20px" >
+                <div style="background-color: lightgrey">
+                PORTFOLIO WERT:<span class="floatRight" id="amountValue">100.000</span>
+                </div>
+                <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RENDITE:<span class="floatRight" id="retValue">100.000</span></div>
+                <div style="border-bottom: dotted 1px"><i class="fa fa-info"></i>RISIKO:<span class="floatRight" id="riskValue">110000</span></div>
 
 
-        </div>
-        <div class="col-sm-4">
-            {% include "inclusions/optimization_block.html" %}
+
+            </div>
+            <div >
+                {% include "inclusions/optimization_block.html" %}
+            </div>
+
         </div>
     </div>
 
@@ -196,7 +195,7 @@ svg .securities_circle{
         g.append("text").text("Mittel").attr("dx",x(0)-distanceFromLine).attr("dy",y(0.33*ymax + 0.33/2*ymax)).attr("text-anchor","middle").attr("transform","rotate(-90 " + (x(0)-distanceFromLine) + " "+ y(0.33 + 0.33/2*ymax)+")");
         g.append("text").text("Hoch").attr("dx",x(0)-distanceFromLine).attr("dy",y(0.66*ymax + 0.33/2*ymax)).attr("text-anchor","middle").attr("transform","rotate(-90 " + (x(0)-distanceFromLine) + " "+ y(0.66 + 0.33/2*ymax)+")");
 
-        g.append("text").text("RENDITE").attr("dx",x(0)).attr("text-anchor","middle");
+        g.append("text").text("RENDITE").attr("font-size","10px").attr("dx",x(0)).attr("text-anchor","middle");
 
 
         //x ticks
@@ -209,7 +208,7 @@ svg .securities_circle{
         g.append("text").text("Mittel").attr("dx",x(0.33*xmax + 0.33/2*xmax)).attr("dy",y(0)+xDinstanceFromLine).attr("text-anchor","middle");
         g.append("text").text("Hoch").attr("dx",x(0.66*xmax + 0.33/2*xmax)).attr("dy",y(0)+xDinstanceFromLine).attr("text-anchor","middle");
 
-        g.append("text").text("RISIKO").attr("dy",y(0)+20).attr("dx",x(xmax)).attr("text-anchor","middle");
+        g.append("text").text("RISIKO").attr("font-size","10px").attr("dy",y(0)+20).attr("dx",x(xmax)).attr("text-anchor","middle");
 
 
         var numberOfLines = 6;
